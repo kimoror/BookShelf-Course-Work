@@ -1,3 +1,0 @@
-DROP SCHEMA IF EXISTS bookshelf CASCADE;
-
-CREATE SCHEMA bookshelf;
