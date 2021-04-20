@@ -1,5 +1,7 @@
 package bookshelf.models.services;
 
+import bookshelf.models.dto.DtoConverter;
+import bookshelf.models.dto.OrderDto;
 import bookshelf.models.entities.Order;
 import bookshelf.models.repository.OrderRepo;
 import org.springframework.stereotype.Service;
@@ -16,10 +18,11 @@ public class OrderService {
 
     /**
      *
-     * @param order entity to save
+     * @param orderDto dto to save
      */
-    public void save(Order order){
-        orderRepo.save(order);
+    public void save(OrderDto orderDto){
+
+        orderRepo.save(DtoConverter.dtoToOrder(orderDto));
     }
 
     /**
@@ -27,7 +30,7 @@ public class OrderService {
      *
      * @return orders
      */
-    public List<Order> findAll(){
-        return orderRepo.findAll();
+    public List<OrderDto> findAll(){
+        return DtoConverter.orderListToDtos(orderRepo.findAll());
     }
 }

@@ -1,5 +1,7 @@
 package bookshelf.models.services;
 
+import bookshelf.models.dto.DtoConverter;
+import bookshelf.models.dto.Product_typeDto;
 import bookshelf.models.entities.Product_type;
 import bookshelf.models.repository.Product_typeRepo;
 import org.springframework.stereotype.Service;
@@ -16,10 +18,10 @@ public class Product_typeService {
 
     /**
      *
-     * @param product_type entity to save
+     * @param product_typeDto dto to save
      */
-    public void save(Product_type product_type){
-        product_typeRepo.save(product_type);
+    public void save(Product_typeDto product_typeDto){
+        product_typeRepo.save(DtoConverter.dtoToProduct_type(product_typeDto));
     }
 
     /**
@@ -27,7 +29,7 @@ public class Product_typeService {
      *
      * @return products_types
      */
-    public List<Product_type> findAll(){
-        return product_typeRepo.findAll();
+    public List<Product_typeDto> findAll(){
+        return DtoConverter.product_typeListToDtos(product_typeRepo.findAll());
     }
 }

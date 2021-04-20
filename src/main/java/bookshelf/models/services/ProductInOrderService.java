@@ -1,5 +1,8 @@
 package bookshelf.models.services;
 
+import bookshelf.models.dto.DtoConverter;
+import bookshelf.models.dto.ProductDto;
+import bookshelf.models.dto.ProductInOrderDto;
 import bookshelf.models.entities.Product;
 import bookshelf.models.entities.ProductInOrder;
 import bookshelf.models.repository.ProductInOrderRepo;
@@ -20,10 +23,10 @@ public class ProductInOrderService {
 
     /**
      *
-     * @param productInOrder entity to save
+     * @param productInOrderDto dto to save
      */
-    public void save(ProductInOrder productInOrder){
-        productInOrderRepo.save(productInOrder);
+    public void save(ProductInOrderDto productInOrderDto){
+        productInOrderRepo.save(DtoConverter.dtoToProductInOrder(productInOrderDto));
     }
 
     /**
@@ -31,12 +34,12 @@ public class ProductInOrderService {
      *
      * @return products and Orders
      */
-    public List<ProductInOrder> findAll(){
-        return productInOrderRepo.findAll();
+    public List<ProductInOrderDto> findAll(){
+        return DtoConverter.productInOrderListToDto(productInOrderRepo.findAll());
     }
 
-    public List<Product> getProductsByOrderId(long order_id){
-        return productInOrderRepo.getProductsByOrderId(order_id);
+    public List<ProductDto> getProductsByOrderId(long order_id){
+        return DtoConverter.productListToDtos(productInOrderRepo.getProductsByOrderId(order_id));
     }
 
 }

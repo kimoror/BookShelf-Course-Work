@@ -1,5 +1,7 @@
 package bookshelf.models.services;
 
+import bookshelf.models.dto.DtoConverter;
+import bookshelf.models.dto.ProductDto;
 import bookshelf.models.entities.Product;
 import bookshelf.models.repository.ProductRepo;
 import org.springframework.stereotype.Service;
@@ -16,10 +18,10 @@ public class ProductService {
 
     /**
      *
-     * @param product entity to save
+     * @param productDto dto to save
      */
-    public void save(Product product){
-        productRepo.save(product);
+    public void save(ProductDto productDto){
+        productRepo.save(DtoConverter.dtoToProduct(productDto));
     }
 
     /**
@@ -27,7 +29,7 @@ public class ProductService {
      *
      * @return products
      */
-    public List<Product> findAll(){
-        return productRepo.findAll();
+    public List<ProductDto> findAll(){
+        return DtoConverter.productListToDtos(productRepo.findAll());
     }
 }

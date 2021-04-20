@@ -1,5 +1,7 @@
 package bookshelf.models.services;
 
+import bookshelf.models.dto.DtoConverter;
+import bookshelf.models.dto.UserDto;
 import bookshelf.models.entities.User;
 import bookshelf.models.repository.UserRepo;
 import org.springframework.stereotype.Service;
@@ -16,10 +18,10 @@ public class UserService {
 
     /**
      *
-     * @param user entity to save
+     * @param userDto dto to save
      */
-    public void save(User user){
-        userRepo.save(user);
+    public void save(UserDto userDto){
+        userRepo.save(DtoConverter.dtoToUser(userDto));
     }
 
     /**
@@ -27,7 +29,7 @@ public class UserService {
      *
      * @return users
      */
-    public List<User> findAll(){
-        return userRepo.findAll();
+    public List<UserDto> findAll(){
+        return DtoConverter.userListToDtos(userRepo.findAll());
     }
 }

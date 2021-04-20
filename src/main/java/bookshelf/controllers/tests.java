@@ -1,13 +1,11 @@
 package bookshelf.controllers;
 
+import bookshelf.models.dto.*;
 import bookshelf.models.entities.*;
 import bookshelf.models.repository.Product_typeRepo;
 import bookshelf.models.services.*;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -15,12 +13,12 @@ import java.util.List;
 public class tests {
     final MakerService makerService;
     final OrderService orderService;
-    final Product_typeRepo product_typeService;
+    final Product_typeService product_typeService;
     final ProductService productService;
     final UserService userService;
     final ProductInOrderService productInOrderService;
 
-    public tests(MakerService makerService, OrderService orderService, Product_typeRepo product_typeService,
+    public tests(MakerService makerService, OrderService orderService, Product_typeService product_typeService,
                  ProductService productService, UserService userService, ProductInOrderService productInOrderService) {
         this.makerService = makerService;
         this.orderService = orderService;
@@ -32,43 +30,49 @@ public class tests {
 
     @RequestMapping(value = "/orders", method = RequestMethod.GET)
     @ResponseBody
-    public List<Order> getOrders(){
+    public List<OrderDto> getOrders(){
         return orderService.findAll();
     }
 
     @RequestMapping(value = "/products", method = RequestMethod.GET)
     @ResponseBody
-    public List<Product> getProducts(){
+    public List<ProductDto> getProducts(){
         return productService.findAll();
     }
 
     @RequestMapping(value = "/makers", method = RequestMethod.GET)
     @ResponseBody
-    public List<Maker> getMakers(){
-        return makerService.findAll();
+    public List<MakerDto> getMakers(){
+        return DtoConverter.makerListToDto(makerService.findAll());
+    }
+
+    @RequestMapping(value = "/makers/add", method = RequestMethod.POST)
+    @ResponseBody
+    public void setMaker(@RequestBody MakerDto makerDto){
+        makerService.save(makerDto);
     }
 
     @RequestMapping(value = "/users", method = RequestMethod.GET)
     @ResponseBody
-    public List<User> getUsers(){
+    public List<UserDto> getUsers(){
         return userService.findAll();
     }
 
     @RequestMapping(value = "/product_types", method = RequestMethod.GET)
     @ResponseBody
-    public List<Product_type> getProduct_types(){
+    public List<Product_typeDto> getProduct_types(){
         return product_typeService.findAll();
     }
 
     @RequestMapping(value = "/product_in_order", method = RequestMethod.GET)
     @ResponseBody
-    public List<ProductInOrder> getProductInOrder(){
+    public List<ProductInOrderDto> getProductInOrder(){
         return productInOrderService.findAll();
     }
 
     @RequestMapping(value = "/product_in_order/id", method = RequestMethod.GET)
     @ResponseBody
-    public List<Product> getProductInOrderById(@RequestParam long order_id){
+    public List<ProductDto> getProductInOrderById(@RequestParam long order_id){
         return productInOrderService.getProductsByOrderId(order_id);
     }
 }

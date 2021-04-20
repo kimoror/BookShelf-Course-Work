@@ -1,5 +1,7 @@
 package bookshelf.models.services;
 
+import bookshelf.models.dto.DtoConverter;
+import bookshelf.models.dto.MakerDto;
 import bookshelf.models.entities.Maker;
 import bookshelf.models.repository.MakerRepo;
 import org.springframework.stereotype.Service;
@@ -16,12 +18,13 @@ public class MakerService{
 
     /**
      *
-     * @param maker entity to save
+     * @param makerDto dto to save
      */
-    public void save(Maker maker){
-        makerRepo.save(maker);
+    public Maker save(MakerDto makerDto) {
+        if (makerDto.getName() == null || makerDto.getName().equals(""))
+            return null;
+        return makerRepo.save(DtoConverter.dtoToMaker(makerDto));
     }
-
     /**
      * Find all makers
      *
