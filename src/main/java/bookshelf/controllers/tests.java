@@ -34,11 +34,7 @@ public class tests {
         return orderService.findAll();
     }
 
-    @RequestMapping(value = "/products", method = RequestMethod.GET)
-    @ResponseBody
-    public List<ProductDto> getProducts(){
-        return productService.findAll();
-    }
+
 
     @RequestMapping(value = "/makers", method = RequestMethod.GET)
     @ResponseBody
