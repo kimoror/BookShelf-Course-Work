@@ -7,8 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -21,6 +20,4 @@ public interface OrderRepo extends JpaRepository<Order, Long> {
 
     @Query(value = "SELECT o from Order o where o.orderStatus = 'ACTIVE' AND o.user.id = :user_id")
     public Order findActiveOrdersByUser_id(long user_id);
-
-//    public List<Product>Product
 }

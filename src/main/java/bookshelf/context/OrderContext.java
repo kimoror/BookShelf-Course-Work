@@ -1,10 +1,10 @@
 package bookshelf.context;
 
+import bookshelf.exceptions.OrderNotFoundException;
 import bookshelf.models.entities.Order;
 import bookshelf.models.entities.Product;
 import bookshelf.models.entities.ProductInOrder;
 import bookshelf.models.entities.User;
-import bookshelf.models.enums.OrderStatus;
 import bookshelf.models.services.OrderService;
 import bookshelf.models.services.ProductInOrderService;
 import bookshelf.models.services.ProductService;
@@ -55,6 +55,11 @@ public class OrderContext {
     }
 
     public List<Product> getProductsFromOrder(){
-        return
+        this.order = orderService.findActiveOrdersByUser_id(this.user.getId());
+        if(this.order == null)
+            throw new OrderNotFoundException();
+//        return productService.findAllByIdList(
+//                productInOrderService.getAllProduct_idByOrderId(this.order.getId()));
+        return productInOrderService.getProductsByOrder(this.order.getId());
     }
 }

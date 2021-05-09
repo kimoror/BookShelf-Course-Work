@@ -10,6 +10,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -98,5 +100,21 @@ public class ProductService {
         if(productList.isEmpty())
             throw new EntityNotFoundException(String.format("Product type with id '%s' not found", id));
         return productList;
+    }
+
+    @Transactional
+    @Loggable
+    public List<Product> findAllByIdList(List<Long> idList){
+        List<Product> productList = productRepo.findAll();
+        List<Product> resultProducts = new ArrayList<>();
+
+        for(int i = 0; i < idList.size(); i++){
+            for (Product product : productList) {
+                if (product.getId() == i)
+                    resultProducts.add(product);
+            }
+        }
+
+        return resultProducts;
     }
 }

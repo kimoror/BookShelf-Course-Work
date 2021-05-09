@@ -2,6 +2,7 @@ package bookshelf.controllers;
 
 import bookshelf.context.OrderContext;
 import bookshelf.models.entities.Order;
+import bookshelf.models.entities.Product;
 import bookshelf.models.entities.ProductInOrder;
 import bookshelf.models.services.OrderService;
 import bookshelf.models.services.UserService;
@@ -21,6 +22,7 @@ public class ShoppingCartController {
         this.orderContext = orderContext;
     }
 
+    //TODO когда будешь прикручивать фронт, сделай post
 //    @PostMapping("/add/{id}")
     @GetMapping("/add/{id}")
     @ResponseBody
@@ -28,4 +30,12 @@ public class ShoppingCartController {
         orderContext.setUser();
         orderContext.addOrder(id);
     }
+
+    @GetMapping("/getOrder")
+    @ResponseBody
+    public List<Product> getOrder(){
+        orderContext.setUser();
+        return orderContext.getProductsFromOrder();
+    }
+
 }

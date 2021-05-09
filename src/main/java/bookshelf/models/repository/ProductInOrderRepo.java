@@ -22,4 +22,11 @@ public interface ProductInOrderRepo extends JpaRepository<ProductInOrder, Long> 
     @Transactional
     @Query(value = "UPDATE ProductInOrder SET num_of_product = num_of_product + 1 WHERE order_id = :order_id AND product_id = :product_id")
     public void numOfProductInc(long order_id, long product_id);
+
+    //TODO Delete
+    @Query(value = "SELECT product_id from ProductInOrder where product_id = :order_id")
+    public List<Long> getAllProduct_idByOrderId(long order_id);
+
+    @Query(value = "SELECT p FROM ProductInOrder pio LEFT JOIN Product p ON p.id = pio.product_id WHERE pio.order_id = :order_id")
+    public List<Product> getProductsByOrder(long order_id);
 }

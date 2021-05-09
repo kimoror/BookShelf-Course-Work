@@ -54,4 +54,12 @@ public class ProductInOrderService {
         return productInOrderRepo.findAllByOrder_idAndProduct_Id(order_id, product_id).size() > 0;
     }
 
+    public List<Long> getAllProduct_idByOrderId(long order_id){
+        return productInOrderRepo.getAllProduct_idByOrderId(order_id);
+    }
+
+    public List<Product> getProductsByOrder(long order_id){
+        return productInOrderRepo.getProductsByOrder(order_id);
+    }
+
 }
