@@ -117,8 +117,8 @@ public  class DtoConverter {
 
     public static ProductInOrder dtoToProductInOrder(ProductInOrderDto productInOrderDto){
         ProductInOrder productInOrder = new ProductInOrder();
-        productInOrder.setOrder(DtoConverter.dtoToOrder(productInOrderDto.getOrder()));
-        productInOrder.setProduct(DtoConverter.dtoToProduct(productInOrderDto.getProduct()));
+        productInOrder.setOrder_id(productInOrder.getOrder_id());
+        productInOrder.setProduct_id(productInOrder.getProduct_id());
         productInOrder.setNum_of_product(productInOrderDto.getNum_of_product());
         return productInOrder;
     }

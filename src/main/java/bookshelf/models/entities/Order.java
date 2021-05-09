@@ -12,11 +12,9 @@ import java.sql.Date;
 @Component
 @Entity
 @Table( name = "orders")
-@Setter
-@Getter
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
+@Data
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,9 +26,11 @@ public class Order {
     @Column(name = "status")
     private OrderStatus orderStatus;
 
+    @PrePersist
     void preInsert(){
         if(this.orderStatus == null){
             this.orderStatus = OrderStatus.ACTIVE;
         }
+
     }
 }

@@ -43,6 +43,12 @@ public class ProductService {
         return productRepo.findAll();
     }
 
+    public Product findById(Long id){
+        return productRepo
+                .findById(id)
+                .orElseThrow(() -> new EntityNotFoundException(String.format("Product with id '%s' not found", id)));
+    }
+
     @Transactional
     @Loggable
     public List<Product> findAllSortByNameAsc(){

@@ -8,6 +8,7 @@ import bookshelf.models.entities.ProductInOrder;
 import bookshelf.models.repository.ProductInOrderRepo;
 import org.springframework.stereotype.Service;
 
+import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 /**
@@ -23,10 +24,14 @@ public class ProductInOrderService {
 
     /**
      *
-     * @param productInOrderDto dto to save
+     * @param productInOrder dto to save
      */
-    public void save(ProductInOrderDto productInOrderDto){
-        productInOrderRepo.save(DtoConverter.dtoToProductInOrder(productInOrderDto));
+    @Transactional
+    public void save(ProductInOrder productInOrder){
+        if(existByOrder_idAndProduct_Id(productInOrder.getOrder_id(), productInOrder.getProduct_id()))
+            productInOrderRepo.numOfProductInc(productInOrder.getOrder_id(), productInOrder.getProduct_id());
+        else
+            productInOrderRepo.save(productInOrder);
     }
 
     /**
@@ -34,12 +39,19 @@ public class ProductInOrderService {
      *
      * @return products and Orders
      */
+    @Transactional
     public List<ProductInOrderDto> findAll(){
         return DtoConverter.productInOrderListToDto(productInOrderRepo.findAll());
     }
 
+    @Transactional
     public List<ProductDto> getProductsByOrderId(long order_id){
         return DtoConverter.productListToDtos(productInOrderRepo.getProductsByOrderId(order_id));
+    }
+
+    @Transactional
+    public Boolean existByOrder_idAndProduct_Id(long order_id, long product_id){
+        return productInOrderRepo.findAllByOrder_idAndProduct_Id(order_id, product_id).size() > 0;
     }
 
 }

@@ -1,5 +1,6 @@
 package bookshelf.models.services;
 
+import bookshelf.exceptions.EntityNotFoundException;
 import bookshelf.models.dto.DtoConverter;
 import bookshelf.models.dto.UserDto;
 import bookshelf.models.entities.User;
@@ -31,5 +32,14 @@ public class UserService {
      */
     public List<UserDto> findAll(){
         return DtoConverter.userListToDtos(userRepo.findAll());
+    }
+
+    public User findByEmail(String email){
+        return userRepo.findByEmail(email)
+                .orElseThrow(() -> new EntityNotFoundException(String.format("User with email '%s' doesn't exist", email)));
+    }
+
+    public Long findUserId(String email){
+        return  findByEmail(email).getId();
     }
 }

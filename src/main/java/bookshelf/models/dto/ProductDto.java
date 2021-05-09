@@ -11,7 +11,7 @@ import java.util.List;
 @AllArgsConstructor
 @ToString
 public class ProductDto {
-    private int id;
+    private long id;
     private String name;
     private int cost;
     private String img_path;

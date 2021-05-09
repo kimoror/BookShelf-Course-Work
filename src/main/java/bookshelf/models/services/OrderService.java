@@ -3,6 +3,7 @@ package bookshelf.models.services;
 import bookshelf.models.dto.DtoConverter;
 import bookshelf.models.dto.OrderDto;
 import bookshelf.models.entities.Order;
+import bookshelf.models.entities.User;
 import bookshelf.models.repository.OrderRepo;
 import org.springframework.stereotype.Service;
 
@@ -18,11 +19,11 @@ public class OrderService {
 
     /**
      *
-     * @param orderDto dto to save
+     * @param order - order to save
      */
-    public void save(OrderDto orderDto){
+    public void save(Order order){
 
-        orderRepo.save(DtoConverter.dtoToOrder(orderDto));
+        orderRepo.save(order);
     }
 
     /**
@@ -33,4 +34,11 @@ public class OrderService {
     public List<OrderDto> findAll(){
         return DtoConverter.orderListToDtos(orderRepo.findAll());
     }
+
+    public Boolean existsByUserId(long user_id){
+//        return orderRepo.findOrderByUser_Id(user_id).isPresent();
+        return orderRepo.existsByUserId(user_id);
+    }
+
+
 }

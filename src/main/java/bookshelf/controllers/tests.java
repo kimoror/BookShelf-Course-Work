@@ -1,8 +1,7 @@
 package bookshelf.controllers;
 
 import bookshelf.models.dto.*;
-import bookshelf.models.entities.*;
-import bookshelf.models.repository.Product_typeRepo;
+import bookshelf.models.repository.ProductInOrderRepo;
 import bookshelf.models.services.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -17,15 +16,17 @@ public class tests {
     final ProductService productService;
     final UserService userService;
     final ProductInOrderService productInOrderService;
+    final ProductInOrderRepo productInOrderRepo;
 
     public tests(MakerService makerService, OrderService orderService, Product_typeService product_typeService,
-                 ProductService productService, UserService userService, ProductInOrderService productInOrderService) {
+                 ProductService productService, UserService userService, ProductInOrderService productInOrderService, ProductInOrderRepo productInOrderRepo) {
         this.makerService = makerService;
         this.orderService = orderService;
         this.product_typeService = product_typeService;
         this.productService = productService;
         this.userService = userService;
         this.productInOrderService = productInOrderService;
+        this.productInOrderRepo = productInOrderRepo;
     }
 
     @RequestMapping(value = "/orders", method = RequestMethod.GET)
@@ -70,5 +71,12 @@ public class tests {
     @ResponseBody
     public List<ProductDto> getProductInOrderById(@RequestParam long order_id){
         return productInOrderService.getProductsByOrderId(order_id);
+    }
+
+    @GetMapping("/productInOrderSave")
+    @ResponseBody
+    public void productInOrderSave() {
+//        productInOrderService.save(1,3);
+        productInOrderRepo.numOfProductInc(1,3);
     }
 }
