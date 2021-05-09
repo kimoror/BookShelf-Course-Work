@@ -21,7 +21,6 @@ public class UserDto {
         this.age = user.getAge();
         this.phone_number = user.getPhone_number();
         this.address = user.getAddress();
-        this.have_account = user.isHave_account();
     }
 
 }

@@ -60,7 +60,6 @@ public  class DtoConverter {
         user.setAge(userDto.getAge());
         user.setPhone_number(userDto.getPhone_number());
         user.setAddress(userDto.getAddress());
-        user.setHave_account(userDto.isHave_account());
         return user;
     }
 

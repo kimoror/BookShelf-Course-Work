@@ -1,21 +1,19 @@
 package bookshelf.models.entities;
 
+import bookshelf.models.enums.Role;
+import bookshelf.models.enums.UserStatus;
 import lombok.*;
-import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 
 /**
  * User entity
  */
-@Component
 @Entity
 @Table(name = "users")
-@Setter
-@Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
+@Data
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,5 +22,21 @@ public class User {
     private int age;
     private String phone_number;
     private String address;
-    private boolean have_account;
+    @Enumerated(value = EnumType.STRING)
+    private Role role;
+    @Enumerated(value = EnumType.STRING)
+    @Column(name = "status")
+    private UserStatus userStatus;
+    private String email;
+    private  String password;
+
+    @PrePersist
+    void preInsert(){
+        if(this.role == null){
+            this.role = Role.USER;
+        }
+        if(this.userStatus == null){
+            this.userStatus = UserStatus.ACTIVE;
+        }
+    }
 }

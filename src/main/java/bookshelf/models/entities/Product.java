@@ -30,4 +30,5 @@ public class Product {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "product_type")
     private Product_type product_type;
+
 }

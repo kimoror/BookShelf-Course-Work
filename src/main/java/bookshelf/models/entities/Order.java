@@ -1,5 +1,8 @@
 package bookshelf.models.entities;
 
+import bookshelf.models.enums.OrderStatus;
+import bookshelf.models.enums.Role;
+import bookshelf.models.enums.UserStatus;
 import lombok.*;
 import org.springframework.stereotype.Component;
 
@@ -22,4 +25,12 @@ public class Order {
     @JoinColumn(name = "user_id")
     private User user;
     private Date orders_time;
+    @Column(name = "status")
+    private OrderStatus orderStatus;
+
+    void preInsert(){
+        if(this.orderStatus == null){
+            this.orderStatus = OrderStatus.ACTIVE;
+        }
+    }
 }

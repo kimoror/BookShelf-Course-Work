@@ -3,6 +3,8 @@ package bookshelf.models.dto;
 import bookshelf.models.entities.Product;
 import lombok.*;
 
+import java.util.List;
+
 @Setter
 @Getter
 @NoArgsConstructor
@@ -17,6 +19,7 @@ public class ProductDto {
     private String short_description;
     private MakerDto maker;
     private Product_typeDto product_type;
+
 
     public ProductDto(Product product){
         this.name = product.getName();
