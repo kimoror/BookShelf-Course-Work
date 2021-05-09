@@ -1,14 +1,18 @@
 package bookshelf.context;
 
 import bookshelf.models.entities.Order;
+import bookshelf.models.entities.Product;
 import bookshelf.models.entities.ProductInOrder;
 import bookshelf.models.entities.User;
+import bookshelf.models.enums.OrderStatus;
 import bookshelf.models.services.OrderService;
 import bookshelf.models.services.ProductInOrderService;
 import bookshelf.models.services.ProductService;
 import bookshelf.models.services.UserService;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 @Component
 public class OrderContext {
@@ -17,32 +21,40 @@ public class OrderContext {
     final UserService userService;
     private User user;
     private Order order;
-    private ProductInOrderService productInOrderService;
-    private ProductService productService;
+    private final ProductInOrderService productInOrderService;
+    private final ProductService productService;
 
-    public OrderContext(OrderService orderService, UserService userService) {
+    public OrderContext(OrderService orderService, UserService userService,ProductService productService,ProductInOrderService productInOrderService) {
         this.orderService = orderService;
         this.userService = userService;
+        this.productService = productService;
+        this.productInOrderService = productInOrderService;
+
     }
 
     public void setUser(){
         this.user = userService.findByEmail(SecurityContextHolder.getContext().getAuthentication().getName());
     }
 
-    public Boolean isOrderExistByUserId(){
-        return orderService.existsByUserId(user.getId());
-    }
+//    public Boolean isOrderExistByUserId(){
+//        return orderService.findActiveOrdersByUser_id(this.user.getId()) != null;
+//    }
 
     public void addOrder(Long id){
-        if(isOrderExistByUserId()){
+        this.order = orderService.findActiveOrdersByUser_id(this.user.getId());
+        if(this.order == null){
             this.order = new Order();
-            order.setUser(user);
-            orderService.save(order);
+            this.order.setUser(this.user);
+            orderService.save(this.order);
         }
         else{
-//            productInOrderService.save(new ProductInOrder(order, productService.findById(id)))
+            productInOrderService.save(
+                    new ProductInOrder(this.order.getId(), productService.findById(id).getId(), 1)
+            );
         }
     }
 
-
+    public List<Product> getProductsFromOrder(){
+        return
+    }
 }

@@ -1,5 +1,6 @@
 package bookshelf.controllers;
 
+import bookshelf.context.OrderContext;
 import bookshelf.models.entities.Order;
 import bookshelf.models.entities.ProductInOrder;
 import bookshelf.models.services.OrderService;
@@ -14,16 +15,17 @@ import java.util.List;
 @RequestMapping("/shoppingCart")
 public class ShoppingCartController {
 
+    OrderContext orderContext;
 
-    @PostMapping("/add/{id}")
-//    @GetMapping("/add/{id}")
+    public ShoppingCartController(OrderContext orderContext) {
+        this.orderContext = orderContext;
+    }
+
+//    @PostMapping("/add/{id}")
+    @GetMapping("/add/{id}")
     @ResponseBody
     public void addProductToCart(@PathVariable Long id){
-
-//       if(orderService.isExistOrderByUser_Id(user_id)){
-//           Order newOrder = new Order();
-//           newOrder.setUser(userService.findByEmail(userEmail));
-//           orderService.save(newOrder);
-//       }
+        orderContext.setUser();
+        orderContext.addOrder(id);
     }
 }

@@ -24,6 +24,7 @@ public class Order {
     private User user;
     private Date orders_time;
     @Column(name = "status")
+    @Enumerated(value = EnumType.STRING)
     private OrderStatus orderStatus;
 
     @PrePersist
@@ -31,6 +32,5 @@ public class Order {
         if(this.orderStatus == null){
             this.orderStatus = OrderStatus.ACTIVE;
         }
-
     }
 }

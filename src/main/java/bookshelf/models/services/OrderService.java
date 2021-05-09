@@ -4,9 +4,11 @@ import bookshelf.models.dto.DtoConverter;
 import bookshelf.models.dto.OrderDto;
 import bookshelf.models.entities.Order;
 import bookshelf.models.entities.User;
+import bookshelf.models.enums.OrderStatus;
 import bookshelf.models.repository.OrderRepo;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
@@ -35,10 +37,12 @@ public class OrderService {
         return DtoConverter.orderListToDtos(orderRepo.findAll());
     }
 
-    public Boolean existsByUserId(long user_id){
-//        return orderRepo.findOrderByUser_Id(user_id).isPresent();
-        return orderRepo.existsByUserId(user_id);
+    @Transactional
+    public Order findActiveOrdersByUser_id(long user_id){
+        return orderRepo.findActiveOrdersByUser_id(user_id);
     }
+
+
 
 
 }
