@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class EmailService {
-    private String mailTo;
     @Value("${mail.from")
     private String mailFrom;
     private String subject;
@@ -25,7 +24,6 @@ public class EmailService {
     @Async
     public void sendMessageBuy(String messageText, String mailTo){
         subject = "Buying from Bookshelf shop";
-        this.mailTo = mailTo;
         SimpleMailMessage message = new SimpleMailMessage();
         message.setFrom(mailFrom);
         message.setTo(mailTo);

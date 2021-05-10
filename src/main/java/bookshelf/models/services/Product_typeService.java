@@ -29,7 +29,7 @@ public class Product_typeService {
      *
      * @return products_types
      */
-    public List<Product_typeDto> findAll(){
-        return DtoConverter.product_typeListToDtos(product_typeRepo.findAll());
+    public List<Product_type> findAll(){
+        return product_typeRepo.findAll();
     }
 }

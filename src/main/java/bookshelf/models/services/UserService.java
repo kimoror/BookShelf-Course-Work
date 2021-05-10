@@ -30,8 +30,8 @@ public class UserService {
      *
      * @return users
      */
-    public List<UserDto> findAll(){
-        return DtoConverter.userListToDtos(userRepo.findAll());
+    public List<User> findAll(){
+        return userRepo.findAll();
     }
 
     public User findByEmail(String email){

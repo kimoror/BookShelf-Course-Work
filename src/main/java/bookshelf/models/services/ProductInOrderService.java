@@ -43,8 +43,8 @@ public class ProductInOrderService {
      * @return products and Orders
      */
     @Transactional
-    public List<ProductInOrderDto> findAll(){
-        return DtoConverter.productInOrderListToDto(productInOrderRepo.findAll());
+    public List<ProductInOrder> findAll(){
+        return productInOrderRepo.findAll();
     }
 
     @Transactional
