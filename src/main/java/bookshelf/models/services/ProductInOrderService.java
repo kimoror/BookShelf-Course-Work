@@ -9,7 +9,10 @@ import bookshelf.models.repository.ProductInOrderRepo;
 import org.springframework.stereotype.Service;
 
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Service interface for managing {@link ProductInOrder}
@@ -58,8 +61,32 @@ public class ProductInOrderService {
         return productInOrderRepo.getAllProduct_idByOrderId(order_id);
     }
 
-    public List<Product> getProductsByOrder(long order_id){
-        return productInOrderRepo.getProductsByOrder(order_id);
+    public Map<Product, Integer> getProductsByOrder(long order_id){
+        Map<Product, Integer> countProducts = new HashMap<>();
+        List<Product> productList = productInOrderRepo.getProductsByOrder(order_id);
+
+        for(Product product : productList){
+            countProducts.put(
+                    product, productInOrderRepo.getNumOfProductsByOrder_idAAndProduct_id(order_id, product.getId())
+            );
+        }
+        return countProducts;
     }
+
+    public void removeProductFromOrder(long order_id, long product_id){
+        productInOrderRepo.removeByOrder_idAndProduct_id(order_id, product_id);
+    }
+
+    public void numOfProductDesc(long order_id, long product_id){
+        if(productInOrderRepo.getNumOfProductsByOrder_idAAndProduct_id(order_id, product_id) > 1)
+            productInOrderRepo.numOfProductDesc(order_id, product_id);
+        else
+            productInOrderRepo.removeByOrder_idAndProduct_id(order_id, product_id);
+    }
+
+    public void deleteProductsFromCanceledOrder(long order_id){
+        productInOrderRepo.deleteProductsFromCanceledOrder(order_id);
+    }
+
 
 }

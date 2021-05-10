@@ -1,5 +1,6 @@
 package bookshelf.models.services;
 
+import bookshelf.exceptions.EntityNotFoundException;
 import bookshelf.models.dto.DtoConverter;
 import bookshelf.models.dto.MakerDto;
 import bookshelf.models.entities.Maker;
@@ -30,7 +31,13 @@ public class MakerService{
      *
      * @return Makers
      */
+
     public List<Maker> findAll(){
         return makerRepo.findAll();
+    }
+
+    public Maker findMakerById(long id){
+        return makerRepo.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException(String.format("Maker with id '%s' doesn't found", id)));
     }
 }

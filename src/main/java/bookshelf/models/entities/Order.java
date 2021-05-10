@@ -22,7 +22,7 @@ public class Order {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
     private User user;
-    private Date orders_time;
+    private Date order_time;
     @Column(name = "status")
     @Enumerated(value = EnumType.STRING)
     private OrderStatus orderStatus;

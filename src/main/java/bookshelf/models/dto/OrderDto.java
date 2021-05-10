@@ -14,11 +14,11 @@ import java.sql.Date;
 public class OrderDto {
     private long id;
     private UserDto user;
-    private Date orders_time;
+    private Date order_time;
     private OrderStatus orderStatus;
 
     public OrderDto(Order order){
-        this.orders_time = order.getOrders_time();
+        this.order_time = order.getOrder_time();
         this.user = DtoConverter.userToDto(order.getUser());
         this.orderStatus = order.getOrderStatus();
     }

@@ -1,16 +1,11 @@
 package bookshelf.controllers;
 
 import bookshelf.context.OrderContext;
-import bookshelf.models.entities.Order;
 import bookshelf.models.entities.Product;
-import bookshelf.models.entities.ProductInOrder;
-import bookshelf.models.services.OrderService;
-import bookshelf.models.services.UserService;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/shoppingCart")
@@ -24,7 +19,7 @@ public class ShoppingCartController {
 
     //TODO когда будешь прикручивать фронт, сделай post
 //    @PostMapping("/add/{id}")
-    @GetMapping("/add/{id}")
+    @GetMapping("/product/add/{id}")
     @ResponseBody
     public void addProductToCart(@PathVariable Long id){
         orderContext.setUser();
@@ -33,9 +28,38 @@ public class ShoppingCartController {
 
     @GetMapping("/getOrder")
     @ResponseBody
-    public List<Product> getOrder(){
+    public Map<Product, Integer> getOrder(){
         orderContext.setUser();
         return orderContext.getProductsFromOrder();
     }
+
+    @GetMapping("/product/delete/{id}")
+    @ResponseBody
+    public void deleteProductFromOrder(@PathVariable Long id){
+        orderContext.setUser();
+        orderContext.deleteProductFromOrder(id);
+    }
+
+    @GetMapping("/product/desc/{id}")
+    @ResponseBody
+    public void descNumOfProduct(@PathVariable Long id){
+        orderContext.setUser();
+        orderContext.numOfProductDesc(id);
+    }
+
+    @GetMapping("/buyOrder")
+    @ResponseBody
+    public void buyOrder(){
+        orderContext.setUser();
+        orderContext.buyOrder();
+    }
+
+    @GetMapping("/cancelOrder")
+    @ResponseBody
+    public void cancelOrder(){
+        orderContext.setUser();
+        orderContext.cancelOrder();
+    }
+
 
 }

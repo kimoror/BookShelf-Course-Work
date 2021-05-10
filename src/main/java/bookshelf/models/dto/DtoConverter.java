@@ -38,7 +38,7 @@ public  class DtoConverter {
     public static Order dtoToOrder(OrderDto orderDto){
         Order order = new Order();
         order.setUser(DtoConverter.dtoToUser(orderDto.getUser()));
-        order.setOrders_time(orderDto.getOrders_time());
+        order.setOrder_time(orderDto.getOrder_time());
         return order;
     }
 
