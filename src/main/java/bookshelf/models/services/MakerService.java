@@ -1,15 +1,16 @@
 package bookshelf.models.services;
 
-import bookshelf.exceptions.EntityNotFoundException;
-import bookshelf.models.dto.DtoConverter;
-import bookshelf.models.dto.MakerDto;
+import bookshelf.aspect.Loggable;
 import bookshelf.models.entities.Maker;
 import bookshelf.models.repository.MakerRepo;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
+@Slf4j
 public class MakerService{
     private final MakerRepo makerRepo;
 
@@ -18,26 +19,14 @@ public class MakerService{
     }
 
     /**
-     *
-     * @param makerDto dto to save
-     */
-    public Maker save(MakerDto makerDto) {
-        if (makerDto.getName() == null || makerDto.getName().equals(""))
-            return null;
-        return makerRepo.save(DtoConverter.dtoToMaker(makerDto));
-    }
-    /**
      * Find all makers
      *
      * @return Makers
      */
 
+    @Transactional
+    @Loggable
     public List<Maker> findAll(){
         return makerRepo.findAll();
-    }
-
-    public Maker findMakerById(long id){
-        return makerRepo.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException(String.format("Maker with id '%s' doesn't found", id)));
     }
 }

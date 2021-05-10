@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -21,17 +20,6 @@ public class ProductService {
 
     public ProductService(ProductRepo productRepo) {
         this.productRepo = productRepo;
-    }
-
-    /**
-     *
-     * @param productDto dto to save
-     */
-
-    @Transactional
-    @Loggable
-    public void save(ProductDto productDto){
-        productRepo.save(DtoConverter.dtoToProduct(productDto));
     }
 
     /**

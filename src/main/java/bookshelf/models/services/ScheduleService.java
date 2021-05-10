@@ -1,6 +1,5 @@
 package bookshelf.models.services;
 
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
@@ -42,8 +41,6 @@ public class ScheduleService {
         return new BufferedWriter(new FileWriter(String.format("%s/%s", dir, filename)));
     }
 
-
-    //TODO - изменить время
     @Scheduled(cron = "0 0/30 * * * *")
     public void start() throws IOException, NullPointerException {
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");

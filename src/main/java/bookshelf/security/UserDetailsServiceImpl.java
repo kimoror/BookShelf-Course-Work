@@ -1,9 +1,11 @@
 package bookshelf.security;
 
 
+import bookshelf.aspect.Loggable;
 import bookshelf.exceptions.EntityNotFoundException;
 import bookshelf.models.entities.User;
 import bookshelf.models.repository.UserRepo;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -14,6 +16,7 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 
 @Service("userDetailsServiceImpl")
+@Slf4j
 public class UserDetailsServiceImpl implements UserDetailsService {
 
     private final UserRepo userRepo;
@@ -24,12 +27,16 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     }
 
     @Override
+    @Transactional
+    @Loggable
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         User user = userRepo.findByEmail(email).orElseThrow(() ->
                 new UsernameNotFoundException("User doesn't exists"));
         return SecurityUser.fromUser(user);
     }
 
+    @Transactional
+    @Loggable
     public void addNewUser(User user) throws EntityNotFoundException {
         if(userExists(user.getEmail())){
             throw new EntityNotFoundException(String.format("User with '%s' email already exist", user.getEmail()));
@@ -39,6 +46,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     }
 
     @Transactional
+    @Loggable
     public boolean userExists(String userEmail){
         return userRepo.findByEmail(userEmail).isPresent();
     }
