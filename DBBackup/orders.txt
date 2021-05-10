@@ -1,0 +1,8 @@
+id|user_id|order_time|status
+1|1|2017-04-08|ACTIVE
+2|2|2020-04-05|ACTIVE
+4|3|null|CLOSE
+5|4|null|ACTIVE
+8|3|null|CANCELED
+9|6|2021-05-10|CLOSE
+7|3|2021-05-10|CANCELED

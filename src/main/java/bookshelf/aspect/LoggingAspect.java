@@ -31,7 +31,7 @@ public class LoggingAspect {
         Arrays.stream(joinPoint.getArgs()).forEach(arg -> message.append(" аrgs: ").append(arg).append("."));
         message.append(" Time: ").append(spendTime).append(" milliseconds.");
 
-        message.append(" Return: ").append(returnValue.toString());
+//        message.append(" Return: ").append(returnValue.toString());
 
         log.info(message.toString());
 

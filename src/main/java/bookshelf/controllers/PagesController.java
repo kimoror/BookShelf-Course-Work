@@ -9,21 +9,31 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-@RequestMapping("/auth")
-public class AuthController {
-    @GetMapping("/login")
+@RequestMapping("/")
+public class PagesController {
+    @GetMapping("auth/login")
     public String getLoginPage(){
-        return "login";
+        return "auth/login";
     }
 
-    @GetMapping("/success")
+    @GetMapping("auth/success")
     public String getSuccessPage(){
-        return "success";
+        return "auth/success";
     }
 
-    @GetMapping("/registration")
+    @GetMapping("auth/registration")
     public String registration(User user){
-        return "registration";
+        return "auth/registration";
+    }
+
+    @GetMapping("books")
+    public String books(){
+        return "products/books";
+    }
+
+    @GetMapping
+    public String index(User user){
+        return "redirect:/books";
     }
 
 }

@@ -32,6 +32,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
                         .csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/", "/auth/registration", "/auth/add").permitAll()
+                .antMatchers("/books", "/stationary", "/exerciseBooks").permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()
