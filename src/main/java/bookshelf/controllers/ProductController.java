@@ -25,40 +25,34 @@ public class ProductController {
         return DtoConverter.productListToDtos(productService.findAll());
     }
 
-    @GetMapping("/orderByNameAsc")
+    @GetMapping("/{productTypeId}")
     @ResponseBody
-    public List<ProductDto> orderProductsByName(){
-        return DtoConverter.productListToDtos(productService.findAllSortByNameAsc());
+    public List<ProductDto> getProductByProduct_typeId(@PathVariable Long productTypeId){
+        return DtoConverter.productListToDtos(productService.getProductByProduct_typeId(productTypeId));
     }
 
-    @GetMapping("product-type-id/{id}")
+    @GetMapping("/orderByCostAsc/{productTypeId}")
     @ResponseBody
-    public List<ProductDto> getProductByProduct_typeId(@PathVariable Long id){
-        return DtoConverter.productListToDtos(productService.getProductByProduct_typeId(id));
+    public List<ProductDto> getProductByProduct_typeIdAndOrderByCostAsc(@PathVariable Long productTypeId){
+        return DtoConverter.productListToDtos(productService.getProductByProduct_typeIdAndOrderByCostAsc(productTypeId));
     }
 
-    @GetMapping("product-type-id/{id}/orderByCostAsc")
+    @GetMapping("/orderByCostDesc/{productTypeId}")
     @ResponseBody
-    public List<ProductDto> getProductByProduct_typeIdAndOrderByCostAsc(@PathVariable Long id){
-        return DtoConverter.productListToDtos(productService.getProductByProduct_typeIdAndOrderByCostAsc(id));
+    public List<ProductDto> getProductByProduct_typeIdAndOrderByCostDesc(@PathVariable Long productTypeId){
+        return DtoConverter.productListToDtos(productService.getProductByProduct_typeIdAndOrderByCostDesc(productTypeId));
     }
 
-    @GetMapping("product-type-id/{id}/orderByCostDesc")
+    @GetMapping("/orderByNameDesc/{productTypeId}")
     @ResponseBody
-    public List<ProductDto> getProductByProduct_typeIdAndOrderByCostDesc(@PathVariable Long id){
-        return DtoConverter.productListToDtos(productService.getProductByProduct_typeIdAndOrderByCostDesc(id));
+    public List<ProductDto> getProductByProduct_typeIdAndOrderByNameDesc(@PathVariable Long productTypeId){
+        return DtoConverter.productListToDtos(productService.getProductByProduct_typeIdAndOrderByNameDesc(productTypeId));
     }
 
-    @GetMapping("product-type-id/{id}/orderByNameDesc")
+    @GetMapping("/orderByNameAsc/{productTypeId}")
     @ResponseBody
-    public List<ProductDto> getProductByProduct_typeIdAndOrderByNameDesc(@PathVariable Long id){
-        return DtoConverter.productListToDtos(productService.getProductByProduct_typeIdAndOrderByNameDesc(id));
-    }
-
-    @GetMapping("product-type-id/{id}/orderByNameAsc")
-    @ResponseBody
-    public List<ProductDto> getProductByProduct_typeIdAndOrderByNameAsc(@PathVariable Long id){
-        return DtoConverter.productListToDtos(productService.getProductByProduct_typeIdAndOrderByNameAsc(id));
+    public List<ProductDto> getProductByProduct_typeIdAndOrderByNameAsc(@PathVariable Long productTypeId){
+        return DtoConverter.productListToDtos(productService.getProductByProduct_typeIdAndOrderByNameAsc(productTypeId));
     }
 
 }

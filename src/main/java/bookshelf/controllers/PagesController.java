@@ -26,14 +26,20 @@ public class PagesController {
         return "auth/registration";
     }
 
-    @GetMapping("books")
+    @GetMapping("views/books")
     public String books(){
         return "products/books";
     }
 
     @GetMapping
     public String index(User user){
-        return "redirect:/books";
+        return "redirect:/views/books";
     }
+
+    @GetMapping("temp/items")
+    public String temp(){return "items";}
+
+    @GetMapping("js/items")
+    public String tempJs(){return "items.js";}
 
 }

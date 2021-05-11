@@ -22,6 +22,7 @@ public class ProductDto {
 
 
     public ProductDto(Product product){
+        this.id = product.getId();
         this.name = product.getName();
         this.cost = product.getCost();
         this.img_path = product.getImg_path();

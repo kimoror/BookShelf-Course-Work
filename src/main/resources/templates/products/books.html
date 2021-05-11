@@ -3,8 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <title>Books</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<!--    <script type="text/javascript" src="../../static/vue.js"></script>-->
+    <script src="https://unpkg.com/vue@next"></script>
 </head>
 <body>
-asdf
+<div id="booksView">
+    <p>Сортировка:</p>
+    <button @click="getBooks">По умолчанию</button>
+    <button @click="getBooksOrderByCostAsc">По цене по возрастанию</button>
+    <button @click="getBooksOrderByCostDesc">По цене по убыванию</button>
+    <button @click="getBooksOrderByNameAsc">По алфавиту по возрастанию</button>
+    <button @click="getBooksOrderByNameDesc">По алфавиту по убыванию</button>
+    <dl v-if="flagProductsView">
+        <dt>Books:</dt>
+        <dd v-for="book in products" :key="book.id">
+            <b>ID</b>: {{book.id}}<br>
+            <b>Название</b>: {{book.name}}<br>
+            <b>Цена</b>: {{book.cost}}<br>
+            <b>Описание</b>: {{book.description}}
+            <hr align="center" width="500" size="2" color="#ff0000" />
+            <br>
+        </dd>
+    </dl>
+</div>
+<!--<script src="https://unpkg.com/vue@next"></script>-->
+<script type="text/javascript" src="../../static/js/books.js"></script>
 </body>
 </html>

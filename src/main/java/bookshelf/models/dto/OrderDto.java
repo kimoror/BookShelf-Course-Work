@@ -18,6 +18,7 @@ public class OrderDto {
     private OrderStatus orderStatus;
 
     public OrderDto(Order order){
+        this.id = order.getId();
         this.order_time = order.getOrder_time();
         this.user = DtoConverter.userToDto(order.getUser());
         this.orderStatus = order.getOrderStatus();

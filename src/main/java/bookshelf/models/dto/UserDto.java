@@ -27,6 +27,7 @@ public class UserDto {
     private  String password;
 
     public UserDto(User user){
+        this.id = user.getId();
         this.name = user.getName();
         this.age = user.getAge();
         this.phone_number = user.getPhone_number();

@@ -5,4 +5,4 @@ id|name|age|phone_number|address|email|password|role|status
 5|qwer|11|89104434343|qwer|qwer@mail.com|$2a$10$t/ga0JwzH3GcB6YvpBfG0O8K9LtFa34FsfBIyWlIB/KSzhbf6TBgm|USER|ACTIVE
 4|Asdf|19|89104431532|Moscow|asdf@mail.com|$2a$10$toxhd1wLxuoiRfnWsw3/MurD86ISJ5PE/zIxyOKm6uKSkVNMXPfkK|USER|ACTIVE
 6|Danila|33|893213216633|Moscow|kimoror@mail.ru|$2y$12$Mv7EjTi.gUf2ZkOFCYIvCevEBjD2xHH7BGDWRgcg8Xo.PfIbqgRCK|USER|ACTIVE
-10|zxcv|42|89113279135|Stalin|zcxv@mail.com|$2a$10$b4is6w9YyJmJZnkQeX01l..6.YlPZFtigQLSQP2KTpvDwAVH9R2tW|USER|ACTIVE
+14|zxcv|42|89104434343|zxcv|zxcv@mail.com|$2a$10$pLiIW6CPspqZMFrvHyYd5uamavz9yUiXC67RoGjplIGbii9aJgdyS|USER|ACTIVE

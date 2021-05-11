@@ -13,6 +13,7 @@ public class Product_typeDto {
     private String name;
 
     public Product_typeDto(Product_type product_type){
+        this.id = product_type.getId();
         this.name = product_type.getName();
     }
 }
