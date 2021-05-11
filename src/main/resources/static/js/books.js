@@ -2,21 +2,22 @@ const app = {
     data() {
         return{
             products:[],
-            // book: {
-            //     id: '',
-            //     name: '',
-            //     cost: '',
-            //     img_path: '',
-            //     description: '',
-            //     maker: {
-            //         id: '',
-            //         name: ''
-            //     },
-            //     product_type: {
-            //         id: 0,
-            //         name: ''
-            //     }
-            // },
+            book: {
+                id: '',
+                name: '',
+                cost: '',
+                img_path: '',
+                description: '',
+                maker: {
+                    id: '',
+                    name: ''
+                },
+                product_type: {
+                    id: 0,
+                    name: ''
+                }
+            },
+            // purchasedProductId:'',
             productTypeId: 3,
             flagProductsView: true,
             url:{
@@ -24,14 +25,13 @@ const app = {
                 orderByCostAsc:'http://localhost:8080/products/orderByCostAsc/',
                 orderByCostDesc:'http://localhost:8080/products/orderByCostDesc/',
                 orderByNameDesc:'http://localhost:8080/products/orderByNameDesc/',
-                orderByNameAsc:'http://localhost:8080/products/orderByNameAsc/'
-
+                orderByNameAsc:'http://localhost:8080/products/orderByNameAsc/',
+                buyProductLink:'http://localhost:8080/shoppingCart/product/add/'
             }
         }
     },
     methods: {
         getBooks: function (){
-            console.log(this.productTypeId)
             axios.get(this.url.products + this.productTypeId)
                 .then((response) => {
                     this.flagProductsView = true;
@@ -39,7 +39,6 @@ const app = {
                 })
         },
         getBooksOrderByCostAsc: function (){
-            console.log(this.productTypeId)
             axios.get(this.url.orderByCostAsc + this.productTypeId)
                 .then((response) => {
                     this.flagProductsView = true;
@@ -47,7 +46,6 @@ const app = {
                 })
         },
         getBooksOrderByCostDesc: function (){
-            console.log(this.productTypeId)
             axios.get(this.url.orderByCostDesc + this.productTypeId)
                 .then((response) => {
                     this.flagProductsView = true;
@@ -55,7 +53,6 @@ const app = {
                 })
         },
         getBooksOrderByNameDesc: function (){
-            console.log(this.productTypeId)
             axios.get(this.url.orderByNameDesc + this.productTypeId)
                 .then((response) => {
                     this.flagProductsView = true;
@@ -63,13 +60,24 @@ const app = {
                 })
         },
         getBooksOrderByNameAsc: function (){
-            console.log(this.productTypeId)
             axios.get(this.url.orderByNameAsc + this.productTypeId)
                 .then((response) => {
                     this.flagProductsView = true;
                     this.products = response.data;
                 })
+        },
+        buyProduct: function (productId){
+            axios.get(this.url.buyProductLink + productId)
+                .then(function(response) {
+                    console.log(response.headers)
+                    // if(status === 302)
+                    //     window.location = "http://localhost:8080/auth/login"
+                })
+                .catch(err => {
+                    console.log(1234)
+                })
         }
+
     },
     beforeMount() {
         this.getBooks()

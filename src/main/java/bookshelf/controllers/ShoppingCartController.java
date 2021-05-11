@@ -17,13 +17,12 @@ public class ShoppingCartController {
         this.orderContext = orderContext;
     }
 
-    //TODO когда будешь прикручивать фронт, сделай post
-//    @PostMapping("/add/{id}")
     @GetMapping("/product/add/{id}")
     @ResponseBody
-    public void addProductToCart(@PathVariable Long id){
+    public String addProductToCart(@PathVariable Long id){
         orderContext.setUser();
         orderContext.addOrder(id);
+        return "Ok";
     }
 
     @GetMapping("/getOrder")
@@ -35,30 +34,34 @@ public class ShoppingCartController {
 
     @GetMapping("/product/delete/{id}")
     @ResponseBody
-    public void deleteProductFromOrder(@PathVariable Long id){
+    public String deleteProductFromOrder(@PathVariable Long id){
         orderContext.setUser();
         orderContext.deleteProductFromOrder(id);
+        return "Ok";
     }
 
     @GetMapping("/product/desc/{id}")
     @ResponseBody
-    public void descNumOfProduct(@PathVariable Long id){
+    public String descNumOfProduct(@PathVariable Long id){
         orderContext.setUser();
         orderContext.numOfProductDesc(id);
+        return "Ok";
     }
 
     @GetMapping("/buyOrder")
     @ResponseBody
-    public void buyOrder(){
+    public String buyOrder(){
         orderContext.setUser();
         orderContext.buyOrder();
+        return "Ok";
     }
 
     @GetMapping("/cancelOrder")
     @ResponseBody
-    public void cancelOrder(){
+    public String cancelOrder(){
         orderContext.setUser();
         orderContext.cancelOrder();
+        return "Ok";
     }
 
 

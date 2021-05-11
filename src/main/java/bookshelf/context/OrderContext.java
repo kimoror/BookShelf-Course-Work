@@ -38,10 +38,19 @@ public class OrderContext {
     }
 
     public void setUser(){
-        this.user = userService.findByEmail(SecurityContextHolder.getContext().getAuthentication().getName());
+        this.user = userService
+                .findByEmail(
+                        SecurityContextHolder
+                        .getContext()
+                        .getAuthentication()
+                        .getName());
     }
 
-//    public Boolean isOrderExistByUserId(){
+    public User getUser() {
+        return user;
+    }
+
+    //    public Boolean isOrderExistByUserId(){
 //        return orderService.findActiveOrdersByUser_id(this.user.getId()) != null;
 //    }
 

@@ -31,15 +31,22 @@ public class PagesController {
         return "products/books";
     }
 
+    @GetMapping("views/stationary")
+    public String stationary(){
+        return "products/stationary";
+    }
+
+    @GetMapping("views/exerciseBooks")
+    public String exerciseBooks(){
+        return "products/exerciseBooks";
+    }
+
     @GetMapping
     public String index(User user){
         return "redirect:/views/books";
     }
 
-    @GetMapping("temp/items")
-    public String temp(){return "items";}
-
-    @GetMapping("js/items")
-    public String tempJs(){return "items.js";}
+    @GetMapping("views/shoppingCart")
+    public String shoppingCart(){return "products/shoppingCart"; }
 
 }

@@ -8,7 +8,18 @@
     <script src="https://unpkg.com/vue@next"></script>
 </head>
 <body>
+
 <div id="booksView">
+    <link href="shoppingCart.html">
+    <button onclick="window.location.href='http://localhost:8080/views/shoppingCart';">
+        Корзина
+    </button>
+    <button onclick="window.location.href='http://localhost:8080/auth/login';">
+        Вход
+    </button>
+    <button onclick="window.location.href='http://localhost:8080/auth/registration';">
+        Регистрация
+    </button>
     <p>Сортировка:</p>
     <button @click="getBooks">По умолчанию</button>
     <button @click="getBooksOrderByCostAsc">По цене по возрастанию</button>
@@ -22,6 +33,8 @@
             <b>Название</b>: {{book.name}}<br>
             <b>Цена</b>: {{book.cost}}<br>
             <b>Описание</b>: {{book.description}}
+            <br>
+            <button @click="buyProduct(book.id)">Добавить в корзину</button>
             <hr align="center" width="500" size="2" color="#ff0000" />
             <br>
         </dd>

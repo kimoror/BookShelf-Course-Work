@@ -6,3 +6,4 @@ id|user_id|order_time|status
 8|3|null|CANCELED
 9|6|2021-05-10|CLOSE
 7|3|2021-05-10|CANCELED
+10|3|null|ACTIVE

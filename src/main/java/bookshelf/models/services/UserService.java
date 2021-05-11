@@ -35,7 +35,7 @@ public class UserService {
     @Transactional
     @Loggable
     public User findByEmail(String email){
-        return userRepo.findByEmail(email)
-                .orElseThrow(() -> new EntityNotFoundException(String.format("User with email '%s' doesn't exist", email)));
+        return userRepo.findByEmail(email).orElseThrow(() -> new EntityNotFoundException("user"));
+//                .orElse(null);
     }
 }
