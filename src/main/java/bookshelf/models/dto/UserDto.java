@@ -37,5 +37,4 @@ public class UserDto {
         this.email = user.getEmail();
         this.password = user.getPassword();
     }
-
 }

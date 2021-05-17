@@ -46,7 +46,7 @@ public class PagesController {
         return "redirect:/views/books";
     }
 
-    @GetMapping("views/shoppingCart")
+    @GetMapping("shoppingCart")
     public String shoppingCart(){return "products/shoppingCart"; }
 
 }

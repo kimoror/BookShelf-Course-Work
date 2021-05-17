@@ -32,7 +32,7 @@ public interface ProductInOrderRepo extends JpaRepository<ProductInOrder, Long> 
     public List<Product> getProductsByOrder(long order_id);
 
     @Query(value = "SELECT pio.num_of_product FROM ProductInOrder pio WHERE pio.order_id = :order_id AND pio.product_id = :product_id")
-    public int getNumOfProductsByOrder_idAAndProduct_id(long order_id, long product_id);
+    public Integer getNumOfProductsByOrder_idAAndProduct_id(long order_id, long product_id);
 
     @Modifying
     @Transactional
@@ -43,6 +43,11 @@ public interface ProductInOrderRepo extends JpaRepository<ProductInOrder, Long> 
     @Transactional
     @Query(value = "UPDATE ProductInOrder SET num_of_product = num_of_product - 1 WHERE order_id = :order_id AND product_id = :product_id")
     public void numOfProductDesc(long order_id, long product_id);
+
+    @Modifying
+    @Transactional
+    @Query(value = "UPDATE ProductInOrder SET num_of_product = num_of_product + 1 WHERE order_id = :order_id AND product_id = :product_id")
+    public void numOfProductAsc(long order_id, long product_id);
 
     @Modifying
     @Transactional

@@ -21,20 +21,17 @@ public class OrderContext {
     private final ProductInOrderService productInOrderService;
     private final ProductService productService;
     private final EmailService emailService;
-    private final MakerService makerService;
 
     public OrderContext(OrderService orderService,
                         UserService userService,
                         ProductService productService,
                         ProductInOrderService productInOrderService,
-                        EmailService emailService,
-                        MakerService makerService) {
+                        EmailService emailService) {
         this.orderService = orderService;
         this.userService = userService;
         this.productService = productService;
         this.productInOrderService = productInOrderService;
         this.emailService = emailService;
-        this.makerService = makerService;
     }
 
     public void setUser(){
@@ -87,6 +84,13 @@ public class OrderContext {
         if(this.order == null)
             throw new OrderNotFoundException();
         productInOrderService.numOfProductDesc(this.order.getId(), product_id);
+    }
+
+    public void numOfProductAsc(long product_id){
+        this.order = orderService.findActiveOrdersByUser_id(this.user.getId());
+        if(this.order == null)
+            throw new OrderNotFoundException();
+        productInOrderService.numOfProductAsc(this.order.getId(), product_id);
     }
 
     public String createMessageBuy(){

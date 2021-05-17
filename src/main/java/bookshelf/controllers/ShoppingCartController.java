@@ -2,6 +2,7 @@ package bookshelf.controllers;
 
 import bookshelf.context.OrderContext;
 import bookshelf.models.entities.Product;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,10 +22,13 @@ public class ShoppingCartController {
     @ResponseBody
     public String addProductToCart(@PathVariable Long id){
         orderContext.setUser();
+        if(orderContext.getUser() == null)
+            return "redirect:/auth/login";
         orderContext.addOrder(id);
         return "Ok";
     }
 
+//    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     @GetMapping("/getOrder")
     @ResponseBody
     public Map<Product, Integer> getOrder(){
@@ -34,34 +38,37 @@ public class ShoppingCartController {
 
     @GetMapping("/product/delete/{id}")
     @ResponseBody
-    public String deleteProductFromOrder(@PathVariable Long id){
+    public void deleteProductFromOrder(@PathVariable long id){
         orderContext.setUser();
         orderContext.deleteProductFromOrder(id);
-        return "Ok";
     }
 
     @GetMapping("/product/desc/{id}")
     @ResponseBody
-    public String descNumOfProduct(@PathVariable Long id){
+    public void descNumOfProduct(@PathVariable Long id){
         orderContext.setUser();
         orderContext.numOfProductDesc(id);
-        return "Ok";
+    }
+
+    @GetMapping("/product/asc/{id}")
+    @ResponseBody
+    public void ascNumOfProduct(@PathVariable Long id){
+        orderContext.setUser();
+        orderContext.numOfProductAsc(id);
     }
 
     @GetMapping("/buyOrder")
     @ResponseBody
-    public String buyOrder(){
+    public void buyOrder(){
         orderContext.setUser();
         orderContext.buyOrder();
-        return "Ok";
     }
 
     @GetMapping("/cancelOrder")
     @ResponseBody
-    public String cancelOrder(){
+    public void cancelOrder(){
         orderContext.setUser();
         orderContext.cancelOrder();
-        return "Ok";
     }
 
 

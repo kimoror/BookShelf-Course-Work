@@ -19,7 +19,7 @@ import java.util.Map;
  */
 @Service
 @Slf4j
-public class ProductInOrderService {
+public class ProductInOrderService{
     final ProductInOrderRepo productInOrderRepo;
 
     public ProductInOrderService(ProductInOrderRepo productInOrderRepo) {
@@ -60,6 +60,12 @@ public class ProductInOrderService {
     @Loggable
     public List<Long> getAllProduct_idByOrderId(long order_id){
         return productInOrderRepo.getAllProduct_idByOrderId(order_id);
+    }
+
+    @javax.transaction.Transactional
+    @Loggable
+    public void numOfProductAsc(long order_id, long product_id){
+        productInOrderRepo.numOfProductAsc(order_id, product_id);
     }
 
     @javax.transaction.Transactional

@@ -1,8 +1,6 @@
 package bookshelf.models.repository;
 
 import bookshelf.models.entities.Order;
-import bookshelf.models.entities.Product;
-import bookshelf.models.enums.OrderStatus;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
