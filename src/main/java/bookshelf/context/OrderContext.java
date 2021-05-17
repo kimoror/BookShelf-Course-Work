@@ -86,13 +86,6 @@ public class OrderContext {
         productInOrderService.numOfProductDesc(this.order.getId(), product_id);
     }
 
-    public void numOfProductAsc(long product_id){
-        this.order = orderService.findActiveOrdersByUser_id(this.user.getId());
-        if(this.order == null)
-            throw new OrderNotFoundException();
-        productInOrderService.numOfProductAsc(this.order.getId(), product_id);
-    }
-
     public String createMessageBuy(){
         Map<Product, Integer> productNumMap = productInOrderService.getProductsByOrder(this.order.getId());
 

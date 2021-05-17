@@ -2,9 +2,47 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>ExerciseBooks</title>
+    <title>Books</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <!--    <script type="text/javascript" src="../../static/vue.js"></script>-->
+    <script src="https://unpkg.com/vue@next"></script>
 </head>
 <body>
 
+<div id="exerciseBooksView">
+    <link href="shoppingCart.html">
+    <button onclick="window.location.href='http://localhost:8080/shoppingCart';">
+        Корзина
+    </button>
+    <button onclick="window.location.href='http://localhost:8080/auth/login';">
+        Вход
+    </button>
+    <button onclick="window.location.href='http://localhost:8080/auth/registration';">
+        Регистрация
+    </button>
+    <br>
+    <a href = 'http://localhost:8080/views/books' style="padding: 5px">Книги</a>
+    <a href = 'http://localhost:8080/views/stationary' style="padding: 5px">Канцелярия</a>
+    <p>Сортировка:</p>
+    <button @click="getProducts()">По умолчанию</button>
+    <button @click="getProductsOrderByCostAsc()">По цене по возрастанию</button>
+    <button @click="getProductsOrderByCostDesc()">По цене по убыванию</button>
+    <button @click="getProductsOrderByNameAsc()">По алфавиту по возрастанию</button>
+    <button @click="getProductsOrderByNameDesc()">По алфавиту по убыванию</button>
+    <dl v-if="flagProductsView">
+        <dt>Рабочие тетради:</dt>
+        <dd v-for="product in products" :key="product.id">
+            <b>ID</b>: {{product.id}}<br>
+            <b>Название</b>: {{product.name}}<br>
+            <b>Цена</b>: {{product.cost}}<br>
+            <b>Описание</b>: {{product.description}}
+            <br>
+            <button @click="buyProduct(product.id)">Добавить в корзину</button>
+            <hr align="center" width="500" size="2" color="#ff0000" />
+            <br>
+        </dd>
+    </dl>
+</div>
+<script type="text/javascript" src="../../static/js/exerciseBooks.js"></script>
 </body>
 </html>

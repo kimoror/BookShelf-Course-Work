@@ -44,10 +44,6 @@ public interface ProductInOrderRepo extends JpaRepository<ProductInOrder, Long> 
     @Query(value = "UPDATE ProductInOrder SET num_of_product = num_of_product - 1 WHERE order_id = :order_id AND product_id = :product_id")
     public void numOfProductDesc(long order_id, long product_id);
 
-    @Modifying
-    @Transactional
-    @Query(value = "UPDATE ProductInOrder SET num_of_product = num_of_product + 1 WHERE order_id = :order_id AND product_id = :product_id")
-    public void numOfProductAsc(long order_id, long product_id);
 
     @Modifying
     @Transactional

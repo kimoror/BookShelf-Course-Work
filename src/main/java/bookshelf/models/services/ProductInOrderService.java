@@ -64,12 +64,6 @@ public class ProductInOrderService{
 
     @javax.transaction.Transactional
     @Loggable
-    public void numOfProductAsc(long order_id, long product_id){
-        productInOrderRepo.numOfProductAsc(order_id, product_id);
-    }
-
-    @javax.transaction.Transactional
-    @Loggable
     public Map<Product, Integer> getProductsByOrder(long order_id){
         Map<Product, Integer> countProducts = new HashMap<>();
         List<Product> productList = productInOrderRepo.getProductsByOrder(order_id);

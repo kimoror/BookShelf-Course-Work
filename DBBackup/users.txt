@@ -6,3 +6,4 @@ id|name|age|phone_number|address|email|password|role|status
 4|Asdf|19|89104431532|Moscow|asdf@mail.com|$2a$10$toxhd1wLxuoiRfnWsw3/MurD86ISJ5PE/zIxyOKm6uKSkVNMXPfkK|USER|ACTIVE
 6|Danila|33|893213216633|Moscow|kimoror@mail.ru|$2y$12$Mv7EjTi.gUf2ZkOFCYIvCevEBjD2xHH7BGDWRgcg8Xo.PfIbqgRCK|USER|ACTIVE
 14|zxcv|42|89104434343|zxcv|zxcv@mail.com|$2a$10$pLiIW6CPspqZMFrvHyYd5uamavz9yUiXC67RoGjplIGbii9aJgdyS|USER|ACTIVE
+15|jk|19|89138593476|Moscow|jk@mail.com|$2a$10$SpKtTGiGp.zw5Iq7Ka/YC.OJ0P6auDptt2GuGwJYeVGKul6MtJ6dK|USER|ACTIVE

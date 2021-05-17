@@ -50,13 +50,6 @@ public class ShoppingCartController {
         orderContext.numOfProductDesc(id);
     }
 
-    @GetMapping("/product/asc/{id}")
-    @ResponseBody
-    public void ascNumOfProduct(@PathVariable Long id){
-        orderContext.setUser();
-        orderContext.numOfProductAsc(id);
-    }
-
     @GetMapping("/buyOrder")
     @ResponseBody
     public void buyOrder(){
