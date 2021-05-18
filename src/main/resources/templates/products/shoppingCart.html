@@ -12,6 +12,7 @@
     <dl v-if="flagProductsView">
         <dt>Товары:</dt>
         <dd v-for="product in products">
+            <img :src = product.img_path alt="product image"><br>
             <b>Артикул</b>: {{product.id}}<br>
             <b>Название</b>: {{product.name}}<br>
             <b>Цена</b>: {{product.cost}}<br>

@@ -32,6 +32,9 @@
     <dl v-if="flagProductsView">
         <dt>Рабочие тетради:</dt>
         <dd v-for="product in products" :key="product.id">
+            <img :src = product.img_path alt="product image"><br>
+            <br>
+            <br>
             <b>ID</b>: {{product.id}}<br>
             <b>Название</b>: {{product.name}}<br>
             <b>Цена</b>: {{product.cost}}<br>
