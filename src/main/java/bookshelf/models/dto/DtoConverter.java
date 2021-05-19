@@ -20,6 +20,7 @@ public  class DtoConverter {
 
     public static Maker dtoToMaker(MakerDto makerDto){
         Maker maker = new Maker();
+        maker.setId(makerDto.getId());
         maker.setName(makerDto.getName());
         return maker;
     }
@@ -67,6 +68,7 @@ public  class DtoConverter {
 
     public static Product_type dtoToProduct_type(Product_typeDto product_typeDto){
         Product_type product_type = new Product_type();
+        product_type.setId(product_typeDto.getId());
         product_type.setName(product_typeDto.getName());
         return product_type;
     }

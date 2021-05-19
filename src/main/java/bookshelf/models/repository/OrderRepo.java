@@ -1,6 +1,7 @@
 package bookshelf.models.repository;
 
 import bookshelf.models.entities.Order;
+import bookshelf.models.enums.OrderStatus;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -35,4 +36,9 @@ public interface OrderRepo extends JpaRepository<Order, Long> {
     @Transactional
     @Query(value = "UPDATE Order SET orderStatus = 'CANCELED' WHERE id = :order_id")
     public void makeOrderStatusCanceled(long order_id);
+
+    @Modifying
+    @Transactional
+    @Query(value = "UPDATE Order SET orderStatus = :status WHERE id = :order_id")
+    public void changeStatus(long order_id, OrderStatus status);
 }

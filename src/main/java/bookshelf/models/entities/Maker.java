@@ -15,7 +15,7 @@ import javax.persistence.*;
 @ToString
 public class Maker {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
     private String name;

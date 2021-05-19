@@ -2,6 +2,7 @@ package bookshelf.models.services;
 
 import bookshelf.aspect.Loggable;
 import bookshelf.models.entities.Order;
+import bookshelf.models.enums.OrderStatus;
 import bookshelf.models.repository.OrderRepo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.sql.Date;
 import java.util.List;
+import java.util.Locale;
 
 @Service
 @Slf4j
@@ -58,6 +60,13 @@ public class OrderService {
     @Loggable
     public void makeOrderStatusCanceled(long order_id){
         orderRepo.makeOrderStatusCanceled(order_id);
+    }
+
+    @Transactional
+    @Loggable
+    public void changeStatus(long order_id, OrderStatus status){
+//        status = status.toUpperCase(Locale.ROOT);
+        orderRepo.changeStatus(order_id,status);
     }
 
 }

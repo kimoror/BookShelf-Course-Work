@@ -8,7 +8,8 @@ import java.util.stream.Collectors;
 public enum Role {
     USER(Set.of(Permission.SHOPPING_CART_VIEW, Permission.SHOPPING_CART_BUY)),
     ADMIN(Set.of(Permission.SHOPPING_CART_VIEW, Permission.SHOPPING_CART_BUY,
-            Permission.ADD_PRODUCT, Permission.CHANGE_PRODUCT, Permission.DELETE_PRODUCT));
+            Permission.CHANGE_ORDER_STATUS,
+            Permission.SEND_MESSAGE, Permission.CHANGE_USER_ROLE));
 
     private final Set<Permission> permissions;
 

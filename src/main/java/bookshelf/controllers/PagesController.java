@@ -1,6 +1,7 @@
 package bookshelf.controllers;
 
 import bookshelf.models.entities.User;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -48,5 +49,10 @@ public class PagesController {
 
     @GetMapping("shoppingCart")
     public String shoppingCart(){return "products/shoppingCart"; }
+
+    @GetMapping("admin")
+    public String admin(){
+        return "admin/admin";
+    }
 
 }

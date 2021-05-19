@@ -4,11 +4,11 @@ import lombok.Getter;
 
 @Getter
 public enum Permission {
-    SHOPPING_CART_VIEW("SHOPPING_CART_VIEW"),
-    SHOPPING_CART_BUY("SHOPPING_CART_BUY"),
-    ADD_PRODUCT("add_product"),
-    DELETE_PRODUCT("delete_product"),
-    CHANGE_PRODUCT("change_product");
+    SHOPPING_CART_VIEW("shopping_cart_buy"),
+    SHOPPING_CART_BUY("shopping_cart_buy"),
+    SEND_MESSAGE("send_message"),
+    CHANGE_USER_ROLE("change_user_role"),
+    CHANGE_ORDER_STATUS("change_order_status");
 
     private final String permission;
 

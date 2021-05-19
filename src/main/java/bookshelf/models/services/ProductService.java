@@ -47,6 +47,13 @@ public class ProductService {
 
     @Transactional
     @Loggable
+    public void addProduct(Product product){
+        System.out.println(product.toString());
+        productRepo.save(product);
+    }
+
+    @Transactional
+    @Loggable
     public List<Product> getProductByProduct_typeId(Long id){
         List<Product> productList = productRepo.getProductByProduct_typeId(id);
         if(productList.isEmpty())
