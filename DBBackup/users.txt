@@ -7,3 +7,4 @@ id|name|age|phone_number|address|email|password|role|status
 6|Danila|33|893213216633|Moscow|kimoror@mail.ru|$2y$12$Mv7EjTi.gUf2ZkOFCYIvCevEBjD2xHH7BGDWRgcg8Xo.PfIbqgRCK|USER|ACTIVE
 14|zxcv|42|89104434343|zxcv|zxcv@mail.com|$2a$10$pLiIW6CPspqZMFrvHyYd5uamavz9yUiXC67RoGjplIGbii9aJgdyS|USER|ACTIVE
 15|jk|19|89138593476|Moscow|jk@mail.com|$2a$10$SpKtTGiGp.zw5Iq7Ka/YC.OJ0P6auDptt2GuGwJYeVGKul6MtJ6dK|USER|ACTIVE
+17|Желудков Данила Михайлович|20|89145763211|Москва, Ленская улица, дом 3 к.3|plami200101@yandex.ru|$2a$10$kKRwMB/R6dkXiOwc82J3MeVnUAe8sDmji0du3w0jYy31KofkkzJzC|USER|ACTIVE

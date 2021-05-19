@@ -50,8 +50,8 @@ public class OrderService {
     @Transactional
     @Loggable
     public void buyProduct(long order_id, Date date){
-        orderRepo.makeOrderStatusClosed(order_id);
         orderRepo.setOrderTime(order_id, date);
+        orderRepo.makeOrderStatusClosed(order_id);
     }
 
     @Transactional

@@ -76,11 +76,16 @@ const app = {
             setTimeout(this.getOrder,3000);
         },
         descNumOfProduct: function(id){
-            if(this.products.find(el => el.id === id).num ===1)
+            if(this.products.find(el => el.id === id).num === 1){
                 if(confirm('Вы точно хотите удалить товар из корзины?')){
                     axios.get(this.url.descNumOfProduct + id);
                     setTimeout(this.getOrder,3000);
                 }
+            }
+            else {
+                axios.get(this.url.descNumOfProduct + id);
+                setTimeout(this.getOrder,3000);
+            }
         },
         buyOrder: function (){
             if(this.products.length > 0){
