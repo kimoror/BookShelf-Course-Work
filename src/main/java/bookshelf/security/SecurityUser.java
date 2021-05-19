@@ -1,5 +1,6 @@
 package bookshelf.security;
 
+import bookshelf.models.enums.Role;
 import bookshelf.models.enums.UserStatus;
 import bookshelf.models.entities.User;
 import lombok.AllArgsConstructor;
@@ -19,11 +20,16 @@ public class SecurityUser implements UserDetails {
     private final String username;
     private final String password;
     private final List<SimpleGrantedAuthority> authorities;
+    private final Role role;
     private final boolean isActive;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return authorities;
+    }
+
+    public Role getRole(){
+        return role;
     }
 
     @Override

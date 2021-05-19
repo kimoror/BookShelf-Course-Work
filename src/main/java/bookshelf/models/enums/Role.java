@@ -6,8 +6,9 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public enum Role {
-    USER(Set.of(Permission.READ)),
-    ADMIN(Set.of(Permission.WRITE, Permission.READ));
+    USER(Set.of(Permission.SHOPPING_CART_VIEW, Permission.SHOPPING_CART_BUY)),
+    ADMIN(Set.of(Permission.SHOPPING_CART_VIEW, Permission.SHOPPING_CART_BUY,
+            Permission.ADD_PRODUCT, Permission.CHANGE_PRODUCT, Permission.DELETE_PRODUCT));
 
     private final Set<Permission> permissions;
 

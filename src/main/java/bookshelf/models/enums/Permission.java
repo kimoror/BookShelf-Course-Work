@@ -4,8 +4,11 @@ import lombok.Getter;
 
 @Getter
 public enum Permission {
-    READ("read"),
-    WRITE("write");
+    SHOPPING_CART_VIEW("SHOPPING_CART_VIEW"),
+    SHOPPING_CART_BUY("SHOPPING_CART_BUY"),
+    ADD_PRODUCT("add_product"),
+    DELETE_PRODUCT("delete_product"),
+    CHANGE_PRODUCT("change_product");
 
     private final String permission;
 
