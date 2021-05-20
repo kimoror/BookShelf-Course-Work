@@ -113,7 +113,8 @@ public class OrderContext {
             throw new OrderNotFoundException();
 
         Date currentDate = new Date(System.currentTimeMillis());
-        emailService.sendMessageBuy(createMessageBuy(), this.user.getEmail());
+        String subject = "Purchase in the BookShelf store";
+        emailService.sendMessageBuy(createMessageBuy(), this.user.getEmail(), subject);
         orderService.buyProduct(this.order.getId(), currentDate);
     }
 

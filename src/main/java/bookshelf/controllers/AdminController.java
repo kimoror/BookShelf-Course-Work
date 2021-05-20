@@ -71,8 +71,8 @@ public class AdminController {
         StringBuilder stringBuilder = new StringBuilder(message);
         stringBuilder.delete(0, stringBuilder.indexOf(":") + 2);
         stringBuilder.delete(stringBuilder.lastIndexOf("\""), stringBuilder.length());
-        System.out.println(stringBuilder.toString());
-        emailService.sendMessageBuy(stringBuilder.toString(), email);
+        String subject = "Message from admin Bookshelf store";
+        emailService.sendMessageBuy(stringBuilder.toString(), email, subject);
     }
 
     @PostMapping("/changeUserRole/{id}")

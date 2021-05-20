@@ -15,6 +15,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
+/**
+ * Spring Security Configuration
+ */
         @EnableWebSecurity
         @Configuration
         @EnableGlobalMethodSecurity(prePostEnabled = true)
@@ -26,6 +29,11 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
                 this.userDetailsService = userDetailsService;
             }
 
+    /**
+     * Determine configuration of application
+     * @param http - HttpSecurity
+     * @throws Exception
+     */
             //TODO изменить пути
             protected void configure(HttpSecurity http) throws Exception{
                 http
@@ -53,11 +61,17 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
         auth.authenticationProvider(daoAuthenticationProvider());
     }
 
+    /**
+     * @return new BCryptPasswordEncoder with strength 12
+     */
     @Bean
     protected PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder(12);
     }
 
+    /**
+     * @return daoAuthenticationProvider with sets passwordEncoder and userDetailsService
+     */
     @Bean
     protected DaoAuthenticationProvider daoAuthenticationProvider(){
         DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();

@@ -14,21 +14,23 @@ import org.springframework.transaction.annotation.Transactional;
 public class EmailService {
     @Value("${mail.from")
     private String mailFrom;
-    private String subject;
 
 
     private final JavaMailSender javaMailSender;
 
-    //TODO Здесь могут быьть ошибки
     public EmailService(JavaMailSender javaMailSender) {
         this.javaMailSender = javaMailSender;
     }
 
+    /**
+     *  sends message about purchase
+     * @param messageText - text of message
+     * @param mailTo - mail to send message
+     */
     @Async
     @Transactional
     @Loggable
-    public void sendMessageBuy(String messageText, String mailTo){
-        subject = "Buying from Bookshelf shop";
+    public void sendMessageBuy(String messageText, String mailTo, String subject){
         SimpleMailMessage message = new SimpleMailMessage();
         message.setFrom(mailFrom);
         message.setTo(mailTo);
