@@ -5,6 +5,7 @@ import bookshelf.models.dto.DtoConverter;
 import bookshelf.models.dto.ProductDto;
 import bookshelf.models.enums.OrderStatus;
 import bookshelf.models.enums.Role;
+import bookshelf.models.services.EmailService;
 import bookshelf.models.services.OrderService;
 import bookshelf.models.services.ProductService;
 import bookshelf.models.services.UserService;
@@ -19,11 +20,14 @@ public class AdminController {
     private final ProductService productService;
     private final OrderService orderService;
     private final UserService userService;
+    private final EmailService emailService;
 
-    public AdminController(ProductService productService, OrderService orderService, UserService userService) {
+    public AdminController(ProductService productService, OrderService orderService,
+                           UserService userService, EmailService emailService) {
         this.productService = productService;
         this.orderService = orderService;
         this.userService = userService;
+        this.emailService = emailService;
     }
 
     @PostMapping("/addProduct")
@@ -60,11 +64,15 @@ public class AdminController {
         orderService.changeStatus(id, orderStatus);
     }
 
-    @PostMapping("/sendMessage")
+    @PostMapping("/sendMessage/{email}")
     @ResponseBody
     @PreAuthorize("hasAuthority('send_message')")
-    public void sendMessage(@RequestBody long id, String message){
-
+    public void sendMessage(@RequestBody String message, @PathVariable String email){
+        StringBuilder stringBuilder = new StringBuilder(message);
+        stringBuilder.delete(0, stringBuilder.indexOf(":") + 2);
+        stringBuilder.delete(stringBuilder.lastIndexOf("\""), stringBuilder.length());
+        System.out.println(stringBuilder.toString());
+        emailService.sendMessageBuy(stringBuilder.toString(), email);
     }
 
     @PostMapping("/changeUserRole/{id}")

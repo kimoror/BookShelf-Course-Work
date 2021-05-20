@@ -9,9 +9,14 @@ const app = {
                 id:'',
                 role:''
             },
+            message: {
+                email:'',
+                text: ''
+            },
             url:{
                 changeOrderStatus:'http://localhost:8080/admin/changeOrderStatus/',
-                changeUserRole:'http://localhost:8080/admin/changeUserRole/'
+                changeUserRole:'http://localhost:8080/admin/changeUserRole/',
+                sendMessage:'http://localhost:8080/admin/sendMessage/'
             }
         }
     },
@@ -25,7 +30,13 @@ const app = {
             axios.post(this.url.changeUserRole + this.user.id,{
                 role: this.user.role
             })
+        },
+        sendMessage: function (){
+            axios.post(this.url.sendMessage + this.message.email, {
+                message: this.message.text
+            })
         }
+
     }
 }
 

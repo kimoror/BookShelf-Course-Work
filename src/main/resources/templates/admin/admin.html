@@ -27,7 +27,7 @@
   </form>
   <button type="submit" @click="changeOrderStatus()">Изменить статус товара</button>
   <hr align="center" width="500" size="2" color="#ff0000" />
-  <h2>Поменять роль пользователя</h2>
+  <h2>Поменять роль пользователя:</h2>
   <form>
     <div>
       <label for="user_id">Id пользователя:</label>
@@ -43,6 +43,24 @@
     </div>
   </form>
   <button type="submit" @click="changeUserRole()">Изменить статус товара</button>
+  <hr align="center" width="500" size="2" color="#ff0000" />
+  <h2>Отправить сообщение пользователю:</h2>
+  <form>
+    <div>
+      <label for="user_email">Email пользователя:</label>
+      <input class="form-control"
+             id="user_email"
+             v-model="message.email" type="email">
+    </div>
+    <div>
+      <label for="message_text">Текст сообщения:</label>
+      <textarea class="form-control"
+             id="message_text"
+                v-model="message.text" type="text">
+        </textarea>
+    </div>
+  </form>
+  <button type="submit" @click="sendMessage">Отправить сообщение</button>
 </div>
 <script src="../../static/js/admin.js"></script>
 </body>
