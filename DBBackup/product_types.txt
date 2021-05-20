@@ -1,0 +1,4 @@
+id|name
+1|stationery
+2|exercise book
+3|book

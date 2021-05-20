@@ -1,15 +1,13 @@
 package bookshelf.controllers;
 
-import bookshelf.exceptions.OrderStatusNotFoundException;
+import bookshelf.exceptions.EnumStatusNotFoundException;
 import bookshelf.models.dto.DtoConverter;
 import bookshelf.models.dto.ProductDto;
-import bookshelf.models.entities.Order;
-import bookshelf.models.entities.Product;
 import bookshelf.models.enums.OrderStatus;
+import bookshelf.models.enums.Role;
 import bookshelf.models.services.OrderService;
 import bookshelf.models.services.ProductService;
-import jdk.swing.interop.SwingInterOpUtils;
-import org.apache.tomcat.util.json.JSONParser;
+import bookshelf.models.services.UserService;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -20,10 +18,12 @@ public class AdminController {
 
     private final ProductService productService;
     private final OrderService orderService;
+    private final UserService userService;
 
-    public AdminController(ProductService productService, OrderService orderService) {
+    public AdminController(ProductService productService, OrderService orderService, UserService userService) {
         this.productService = productService;
         this.orderService = orderService;
+        this.userService = userService;
     }
 
     @PostMapping("/addProduct")
@@ -56,7 +56,7 @@ public class AdminController {
         if(stringBuilder.toString().equals("CANCELED"))
             orderStatus = OrderStatus.CANCELED;
         if(orderStatus == null)
-            throw new OrderStatusNotFoundException();
+            throw new EnumStatusNotFoundException("Order status not found.");
         orderService.changeStatus(id, orderStatus);
     }
 
@@ -67,10 +67,20 @@ public class AdminController {
 
     }
 
-    @PostMapping("/changeUserRole")
+    @PostMapping("/changeUserRole/{id}")
     @ResponseBody
     @PreAuthorize("hasAuthority('change_user_role')")
-    public void changeUserRole(@RequestBody long id, String role){
-
+    public void changeUserRole(@PathVariable long id,@RequestBody String roleStr){
+        StringBuilder stringBuilder = new StringBuilder(roleStr);
+        stringBuilder.delete(0, stringBuilder.indexOf(":") + 2);
+        stringBuilder.delete(stringBuilder.indexOf("\""), stringBuilder.length());
+        Role role = null;
+        if(stringBuilder.toString().equals("ADMIN"))
+            role = Role.ADMIN;
+        if(stringBuilder.toString().equals("USER"))
+            role = Role.USER;
+        if(role == null)
+            throw new EnumStatusNotFoundException("User role not found.");
+        userService.changeUserRole(id, role);
     }
 }

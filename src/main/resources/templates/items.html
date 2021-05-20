@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Items</title>
+    <script type="text/javascript" src="../static/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<!--    <script src="https://unpkg.com/vue@next"></script>-->
+</head>
+<body>
+<div id="app">
+    <button @click="getItems">List of items</button>
+    <dl v-if="flagItemsView">
+        <dt>Items:</dt>
+        <dd v-for="item in items">
+            {{'id '+ item.id
+            + ': ' + item.name
+            + ' at the price ' + item.price
+            + ' rubles creation date: ' + item.creation_date
+            + ' ,order_id: ' + item.order_id}}
+        </dd>
+    </dl>
+        <br>
+        <form>
+            <label>
+                Name of item:
+                <input placeholder="phone" v-model="item.name" required>
+            </label>
+            <br>
+            <label>
+                Date of creation item:
+                <input placeholder="2020-03-02" v-model="item.creation_date" required>
+            </label>
+            <br>
+            <label>
+                Price of item:
+                <input placeholder="30000" v-model="item.price" required>
+            </label>
+            <br>
+            <label>
+                Order_id:
+                <input placeholder="1" v-model="item.order_id" required>
+            </label>
+        </form>
+        <button @click="addItem">add Item</button>
+        <br>
+        <label> Input id of item which you want to delete
+            <input placeholder="1" v-model="delete_id" pattern="[0-9]+" required="">
+        </label>
+        <br>
+        <button @click="deleteItem">Delete item</button>
+        <br>
+        Filter:
+        <br>
+        <form>
+            <label>
+                Input name:
+                <input placeholder="phone3" v-model="filter.name" required>
+            </label>
+            <label>
+                Input creation_date:
+                <input placeholder="2020-04-09" v-model="filter.creation_date">
+            </label>
+            <label>
+                Input price:
+                <input placeholder="5134" v-model="filter.price">
+            </label>
+            <label>
+                Input order_id:
+                <input placeholder="2" v-model="filter.order_id">
+            </label>
+            <br>
+        </form>
+        <button @click="filterItemsAllProp">Фильтровать</button>
+        <dl v-if="flagFilterItemsView">
+            <dt>Filter Items:</dt>
+            <dd v-for="item in filterItems">
+                {{'id '+ item.id
+            + ': ' + item.name
+            + ' at the price ' + item.price
+            + ' rubles creation date: ' + item.creation_date
+            + ' ,order_id: ' + item.order_id}}
+            </dd>
+        </dl>
+</div>
+<script type="text/javascript" src="items.js"></script>
+</body>
+</html>

@@ -10,6 +10,7 @@
 </head>
 <body>
 <div id="admin" >
+  <h2>Поменять статус заказа</h2>
   <form>
     <div>
       <label for="order_id">Id заказа:</label>
@@ -25,6 +26,23 @@
     </div>
   </form>
   <button type="submit" @click="changeOrderStatus()">Изменить статус товара</button>
+  <hr align="center" width="500" size="2" color="#ff0000" />
+  <h2>Поменять роль пользователя</h2>
+  <form>
+    <div>
+      <label for="user_id">Id пользователя:</label>
+      <input class="form-control"
+             id="user_id"
+             v-model="user.id" type="text">
+    </div>
+    <div>
+      <label for="user_role">Новая роль пользователя:</label>
+      <input class="form-control"
+             id="user_role"
+             v-model="user.role" type="text">
+    </div>
+  </form>
+  <button type="submit" @click="changeUserRole()">Изменить статус товара</button>
 </div>
 <script src="../../static/js/admin.js"></script>
 </body>
