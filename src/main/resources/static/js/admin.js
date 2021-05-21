@@ -7,7 +7,8 @@ const app = {
             },
             user:{
                 id:'',
-                role:''
+                role:'',
+                status
             },
             message: {
                 email:'',
@@ -16,7 +17,8 @@ const app = {
             url:{
                 changeOrderStatus:'http://localhost:8080/admin/changeOrderStatus/',
                 changeUserRole:'http://localhost:8080/admin/changeUserRole/',
-                sendMessage:'http://localhost:8080/admin/sendMessage/'
+                sendMessage:'http://localhost:8080/admin/sendMessage/',
+                changeStatus:'http://localhost:8080/admin/changeUserStatus/'
             }
         }
     },
@@ -34,6 +36,11 @@ const app = {
         sendMessage: function (){
             axios.post(this.url.sendMessage + this.message.email, {
                 message: this.message.text
+            })
+        },
+        changeUserStatus: function (){
+            axios.post(this.url.changeStatus + this.user.id, {
+                status: this.user.status
             })
         }
 

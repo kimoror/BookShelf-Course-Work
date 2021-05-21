@@ -6,6 +6,7 @@ import bookshelf.models.dto.DtoConverter;
 import bookshelf.models.dto.UserDto;
 import bookshelf.models.entities.User;
 import bookshelf.models.enums.Role;
+import bookshelf.models.enums.UserStatus;
 import bookshelf.models.repository.UserRepo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -43,5 +44,11 @@ public class UserService {
     @Loggable
     public void changeUserRole(long userId, Role role){
         userRepo.changeUserRole(userId, role);
+    }
+
+    @Transactional
+    @Loggable
+    public void changeUserStatus(long userId, UserStatus status){
+        userRepo.changeUserStatus(userId, status);
     }
 }

@@ -5,6 +5,7 @@ import bookshelf.models.dto.DtoConverter;
 import bookshelf.models.dto.ProductDto;
 import bookshelf.models.enums.OrderStatus;
 import bookshelf.models.enums.Role;
+import bookshelf.models.enums.UserStatus;
 import bookshelf.models.services.EmailService;
 import bookshelf.models.services.OrderService;
 import bookshelf.models.services.ProductService;
@@ -94,5 +95,29 @@ public class AdminController {
         if(role == null)
             throw new EnumStatusNotFoundException("User role not found.");
         userService.changeUserRole(id, role);
+    }
+
+    /**
+     * this method allow administrator change status of the user {@link bookshelf.models.enums.UserStatus}
+     * @param id - id of the user to whom we want change the status
+     * @param statusStr - new user's status
+     */
+    @PostMapping("/changeUserStatus/{id}")
+    @ResponseBody
+    @PreAuthorize("hasAuthority('change_user_role')")
+    public void changeUserStatus(@PathVariable long id,@RequestBody String statusStr){
+        //parsing json
+        StringBuilder stringBuilder = new StringBuilder(statusStr);
+        stringBuilder.delete(0, stringBuilder.indexOf(":") + 2);
+        stringBuilder.delete(stringBuilder.indexOf("\""), stringBuilder.length());
+
+        UserStatus status = null;
+        if(stringBuilder.toString().equals("ACTIVE"))
+            status = UserStatus.ACTIVE;
+        if(stringBuilder.toString().equals("BANNED"))
+            status = UserStatus.BANNED;
+        if(status == null)
+            throw new EnumStatusNotFoundException("User status not found.");
+        userService.changeUserStatus(id, status);
     }
 }
