@@ -10,10 +10,17 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
+/**
+ * Repository for {@link User}
+ */
 @Repository
 public interface UserRepo extends JpaRepository<User, Long> {
     Optional<User> findByEmail(String email);
 
+    /**
+     * @param userId - id of the user whose status we want to change
+     * @param role - new user role
+     */
     @Modifying
     @Transactional
     @Query("UPDATE User SET role = :role where id = :userId")

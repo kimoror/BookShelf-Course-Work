@@ -5,6 +5,9 @@ import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 
+/**
+ * Product type entity
+ */
 @Component
 @Entity
 @Setter

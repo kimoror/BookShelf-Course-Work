@@ -3,6 +3,9 @@ package bookshelf.models.dto;
 import bookshelf.models.entities.Product_type;
 import lombok.*;
 
+/**
+ * Dto of {@link Product_type}
+ */
 @Setter
 @Getter
 @NoArgsConstructor

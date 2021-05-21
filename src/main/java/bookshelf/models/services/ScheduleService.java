@@ -14,6 +14,9 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.Objects;
 
+/**
+ * Makes a backup of the entire database every 30 minutes
+ */
 @Slf4j
 @Service
 public class ScheduleService {
@@ -37,10 +40,21 @@ public class ScheduleService {
         this.userService = userService;
     }
 
+    /**
+     * @param dir - the directory where the file will be located
+     * @param filename - name of the file to be written to
+     * @return new BufferedWriter
+     * @throws IOException
+     */
     private BufferedWriter createWriter(String dir, String filename) throws IOException{
         return new BufferedWriter(new FileWriter(String.format("%s/%s", dir, filename)));
     }
 
+    /**
+     * Makes a backup of the entire database every 30 minutes
+     * @throws IOException
+     * @throws NullPointerException
+     */
     @Scheduled(cron = "0 0/30 * * * *")
     public void start() throws IOException, NullPointerException {
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");

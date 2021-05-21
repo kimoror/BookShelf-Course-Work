@@ -34,38 +34,6 @@ class ProductInOrderServiceTest {
     }
 
     @Test
-    void testSave() {
-        // Setup
-        final ProductInOrder productInOrder = new ProductInOrder(0L, 0L, 0L, 0);
-
-        // Configure ProductInOrderRepo.findAllByOrder_idAndProduct_Id(...).
-        final List<ProductInOrder> productInOrders = List.of(new ProductInOrder(0L, 0L, 0L, 0));
-        when(mockProductInOrderRepo.findAllByOrder_idAndProduct_Id(0L, 0L)).thenReturn(productInOrders);
-
-        when(mockProductInOrderRepo.save(new ProductInOrder(0L, 0L, 0L, 0))).thenReturn(new ProductInOrder(0L, 0L, 0L, 0));
-
-        // Run the test
-        productInOrderServiceUnderTest.save(productInOrder);
-
-        // Verify the results
-        verify(mockProductInOrderRepo).numOfProductInc(0L, 0L);
-    }
-
-    @Test
-    void testSave_ProductInOrderRepoFindAllByOrder_idAndProduct_IdReturnsNoItems() {
-        // Setup
-        final ProductInOrder productInOrder = new ProductInOrder(0L, 0L, 0L, 0);
-        when(mockProductInOrderRepo.findAllByOrder_idAndProduct_Id(0L, 0L)).thenReturn(Collections.emptyList());
-        when(mockProductInOrderRepo.save(new ProductInOrder(0L, 0L, 0L, 0))).thenReturn(new ProductInOrder(0L, 0L, 0L, 0));
-
-        // Run the test
-        productInOrderServiceUnderTest.save(productInOrder);
-
-        // Verify the results
-        verify(mockProductInOrderRepo).numOfProductInc(0L, 0L);
-    }
-
-    @Test
     void testFindAll() {
         // Setup
         final List<ProductInOrder> expectedResult = List.of(new ProductInOrder(0L, 0L, 0L, 0));
@@ -73,19 +41,6 @@ class ProductInOrderServiceTest {
         // Configure ProductInOrderRepo.findAll(...).
         final List<ProductInOrder> productInOrders = List.of(new ProductInOrder(0L, 0L, 0L, 0));
         when(mockProductInOrderRepo.findAll()).thenReturn(productInOrders);
-
-        // Run the test
-        final List<ProductInOrder> result = productInOrderServiceUnderTest.findAll();
-
-        // Verify the results
-        assertEquals(expectedResult, result);
-    }
-
-    @Test
-    void testFindAll_ProductInOrderRepoReturnsNoItems() {
-        // Setup
-        final List<ProductInOrder> expectedResult = List.of(new ProductInOrder(0L, 0L, 0L, 0));
-        when(mockProductInOrderRepo.findAll()).thenReturn(Collections.emptyList());
 
         // Run the test
         final List<ProductInOrder> result = productInOrderServiceUnderTest.findAll();
@@ -110,42 +65,6 @@ class ProductInOrderServiceTest {
     }
 
     @Test
-    void testExistByOrder_idAndProduct_Id_ProductInOrderRepoReturnsNoItems() {
-        // Setup
-        when(mockProductInOrderRepo.findAllByOrder_idAndProduct_Id(0L, 0L)).thenReturn(Collections.emptyList());
-
-        // Run the test
-        final Boolean result = productInOrderServiceUnderTest.existByOrder_idAndProduct_Id(0L, 0L);
-
-        // Verify the results
-        assertTrue(result);
-    }
-
-    @Test
-    void testGetAllProduct_idByOrderId() {
-        // Setup
-        when(mockProductInOrderRepo.getAllProduct_idByOrderId(0L)).thenReturn(List.of(0L));
-
-        // Run the test
-        final List<Long> result = productInOrderServiceUnderTest.getAllProduct_idByOrderId(0L);
-
-        // Verify the results
-        assertEquals(List.of(0L), result);
-    }
-
-    @Test
-    void testGetAllProduct_idByOrderId_ProductInOrderRepoReturnsNoItems() {
-        // Setup
-        when(mockProductInOrderRepo.getAllProduct_idByOrderId(0L)).thenReturn(Collections.emptyList());
-
-        // Run the test
-        final List<Long> result = productInOrderServiceUnderTest.getAllProduct_idByOrderId(0L);
-
-        // Verify the results
-        assertEquals(List.of(0L), result);
-    }
-
-    @Test
     void testGetProductsByOrder() {
         // Setup
 
@@ -162,18 +81,6 @@ class ProductInOrderServiceTest {
     }
 
     @Test
-    void testGetProductsByOrder_ProductInOrderRepoGetProductsByOrderReturnsNoItems() {
-        // Setup
-        when(mockProductInOrderRepo.getProductsByOrder(0L)).thenReturn(Collections.emptyList());
-        when(mockProductInOrderRepo.getNumOfProductsByOrder_idAAndProduct_id(0L, 0L)).thenReturn(0);
-
-        // Run the test
-        final Map<Product, Integer> result = productInOrderServiceUnderTest.getProductsByOrder(0L);
-
-        // Verify the results
-    }
-
-    @Test
     void testRemoveProductFromOrder() {
         // Setup
 
@@ -181,19 +88,6 @@ class ProductInOrderServiceTest {
         productInOrderServiceUnderTest.removeProductFromOrder(0L, 0L);
 
         // Verify the results
-        verify(mockProductInOrderRepo).removeByOrder_idAndProduct_id(0L, 0L);
-    }
-
-    @Test
-    void testNumOfProductDesc() {
-        // Setup
-        when(mockProductInOrderRepo.getNumOfProductsByOrder_idAAndProduct_id(0L, 0L)).thenReturn(0);
-
-        // Run the test
-        productInOrderServiceUnderTest.numOfProductDesc(0L, 0L);
-
-        // Verify the results
-        verify(mockProductInOrderRepo).numOfProductDesc(0L, 0L);
         verify(mockProductInOrderRepo).removeByOrder_idAndProduct_id(0L, 0L);
     }
 

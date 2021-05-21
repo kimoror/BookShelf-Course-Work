@@ -26,6 +26,11 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         this.userRepo = userRepo;
     }
 
+    /**
+     * @param email - email of user
+     * @return Security user if we found him in database
+     * @throws UsernameNotFoundException
+     */
     @Override
     @Transactional
     @Loggable
@@ -35,6 +40,11 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         return SecurityUser.fromUser(user);
     }
 
+    /**
+     * Add user to database if he exist
+     * @param user - new user
+     * @throws EntityNotFoundException
+     */
     @Transactional
     @Loggable
     public void addNewUser(User user) throws EntityNotFoundException {

@@ -57,6 +57,12 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
         ;
     }
 
+
+    /**
+     *  Set daoAuthenticationProvider to authentification
+     * @param auth - authentification
+     * @throws Exception
+     */
     protected void configure(AuthenticationManagerBuilder auth) throws Exception{
         auth.authenticationProvider(daoAuthenticationProvider());
     }
@@ -70,7 +76,8 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
     }
 
     /**
-     * @return daoAuthenticationProvider with sets passwordEncoder and userDetailsService
+     * Set passwordEncoder and userDetailsService
+     * @return daoAuthenticationProvider with
      */
     @Bean
     protected DaoAuthenticationProvider daoAuthenticationProvider(){

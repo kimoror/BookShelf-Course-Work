@@ -30,6 +30,9 @@ public class User {
     private String email;
     private  String password;
 
+    /**
+     * set default values
+     */
     @PrePersist
     void preInsert(){
         if(this.role == null){

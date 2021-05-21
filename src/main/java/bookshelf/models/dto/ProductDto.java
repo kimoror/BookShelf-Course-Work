@@ -5,6 +5,9 @@ import lombok.*;
 
 import java.util.List;
 
+/**
+ * Dto of {@link Product}
+ */
 @Setter
 @Getter
 @NoArgsConstructor

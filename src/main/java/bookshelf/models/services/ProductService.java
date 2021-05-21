@@ -4,7 +4,9 @@ import bookshelf.aspect.Loggable;
 import bookshelf.exceptions.EntityNotFoundException;
 import bookshelf.models.dto.DtoConverter;
 import bookshelf.models.dto.ProductDto;
+import bookshelf.models.entities.Order;
 import bookshelf.models.entities.Product;
+import bookshelf.models.repository.OrderRepo;
 import bookshelf.models.repository.ProductRepo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -13,6 +15,9 @@ import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Service for managing {@link Product}. Using {@link ProductRepo}
+ */
 @Service
 @Slf4j
 public class ProductService {
@@ -37,12 +42,6 @@ public class ProductService {
         return productRepo
                 .findById(id)
                 .orElseThrow(() -> new EntityNotFoundException(String.format("Product with id '%s' not found", id)));
-    }
-
-    @Transactional
-    @Loggable
-    public List<Product> findAllSortByNameAsc(){
-        return productRepo.findAllByOrderByNameAsc();
     }
 
     @Transactional
@@ -97,6 +96,10 @@ public class ProductService {
         return productList;
     }
 
+    /**
+     * @param idList - list of product id
+     * @return products by id from idList
+     */
     @Transactional
     @Loggable
     public List<Product> findAllByIdList(List<Long> idList){

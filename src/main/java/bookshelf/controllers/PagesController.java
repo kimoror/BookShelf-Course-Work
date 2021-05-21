@@ -9,6 +9,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+
+/**
+ * Methods of this class return pages using thymeleaf framework
+ */
 @Controller
 @RequestMapping("/")
 public class PagesController {
@@ -50,6 +54,7 @@ public class PagesController {
     @GetMapping("shoppingCart")
     public String shoppingCart(){return "products/shoppingCart"; }
 
+    @PreAuthorize("hasAuthority('admin_page')")
     @GetMapping("admin")
     public String admin(){
         return "admin/admin";

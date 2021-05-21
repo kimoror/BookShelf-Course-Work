@@ -9,6 +9,9 @@ import org.springframework.stereotype.Component;
 import javax.persistence.*;
 import java.sql.Date;
 
+/**
+ * user's order entity
+ */
 @Component
 @Entity
 @Table( name = "orders")
@@ -27,6 +30,9 @@ public class Order {
     @Enumerated(value = EnumType.STRING)
     private OrderStatus orderStatus;
 
+    /**
+     * set default values
+     */
     @PrePersist
     void preInsert(){
         if(this.orderStatus == null){

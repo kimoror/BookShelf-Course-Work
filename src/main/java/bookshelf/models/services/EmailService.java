@@ -9,6 +9,9 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+/**
+ * its need to send mail from email
+ */
 @Service
 @Slf4j
 public class EmailService {
@@ -23,7 +26,7 @@ public class EmailService {
     }
 
     /**
-     *  sends message about purchase
+     *  sends simple mail message about purchase
      * @param messageText - text of message
      * @param mailTo - mail to send message
      */

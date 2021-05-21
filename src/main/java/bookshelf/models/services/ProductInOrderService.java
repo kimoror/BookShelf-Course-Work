@@ -3,8 +3,10 @@ package bookshelf.models.services;
 import bookshelf.aspect.Loggable;
 import bookshelf.models.dto.DtoConverter;
 import bookshelf.models.dto.ProductDto;
+import bookshelf.models.entities.Order;
 import bookshelf.models.entities.Product;
 import bookshelf.models.entities.ProductInOrder;
+import bookshelf.models.repository.OrderRepo;
 import bookshelf.models.repository.ProductInOrderRepo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -15,7 +17,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Service interface for managing {@link ProductInOrder}
+ * Service for managing {@link ProductInOrder}. Using {@link ProductInOrderRepo}
  */
 @Service
 @Slf4j
@@ -50,16 +52,15 @@ public class ProductInOrderService{
         return productInOrderRepo.findAll();
     }
 
+    /**
+     * @param order_id id of current order
+     * @param product_id - id of product in current order whom we want to find
+     * @return true if the product exist in the current order or false if it doesn't
+     */
     @Transactional
     @Loggable
     public Boolean existByOrder_idAndProduct_Id(long order_id, long product_id){
         return productInOrderRepo.findAllByOrder_idAndProduct_Id(order_id, product_id).size() > 0;
-    }
-
-    @javax.transaction.Transactional
-    @Loggable
-    public List<Long> getAllProduct_idByOrderId(long order_id){
-        return productInOrderRepo.getAllProduct_idByOrderId(order_id);
     }
 
     @javax.transaction.Transactional
@@ -82,6 +83,12 @@ public class ProductInOrderService{
         productInOrderRepo.removeByOrder_idAndProduct_id(order_id, product_id);
     }
 
+    /**
+     * It's need to decrement quantity of the product.
+     * If quantity of the product < 1 we remove product from order
+     * @param order_id - id of the current order
+     * @param product_id - id of the product in the current order whom quantity we want to decrement
+     */
     @javax.transaction.Transactional
     @Loggable
     public void numOfProductDesc(long order_id, long product_id){

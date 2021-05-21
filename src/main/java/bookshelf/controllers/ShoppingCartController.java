@@ -8,6 +8,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
+/**
+ * Controller for interacting with the bucket. Use {@link OrderContext}
+ */
 @Controller
 @RequestMapping("/shoppingCart")
 public class ShoppingCartController {

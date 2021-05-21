@@ -9,6 +9,9 @@ import javax.persistence.Column;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 
+/**
+ *  Dto of {@link User}
+ */
 @Setter
 @Getter
 @NoArgsConstructor

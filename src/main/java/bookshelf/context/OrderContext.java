@@ -11,6 +11,9 @@ import java.sql.Date;
 import java.util.Map;
 
 
+/**
+ * This class contains order context
+ */
 @Component
 public class OrderContext {
 
@@ -34,6 +37,9 @@ public class OrderContext {
         this.emailService = emailService;
     }
 
+    /**
+     * find user buy email and set user to context
+     */
     public void setUser(){
         this.user = userService
                 .findByEmail(
@@ -43,14 +49,17 @@ public class OrderContext {
                         .getName());
     }
 
+    /**
+     * @return user from current context
+     */
     public User getUser() {
         return user;
     }
 
-    //    public Boolean isOrderExistByUserId(){
-//        return orderService.findActiveOrdersByUser_id(this.user.getId()) != null;
-//    }
-
+    /**
+     * method save product into current order in productInOrder table
+     * @param id - if of product, which we want to add to the order
+     */
     public void addOrder(Long id){
         this.order = orderService.findActiveOrdersByUser_id(this.user.getId());
         if(this.order == null){
@@ -65,6 +74,10 @@ public class OrderContext {
         }
     }
 
+
+    /**
+     * @return Map which contain product(key) and it's quantity(value) in current order
+     */
     public Map<Product, Integer> getProductsFromOrder(){
         this.order = orderService.findActiveOrdersByUser_id(this.user.getId());
         if(this.order == null)
@@ -72,6 +85,10 @@ public class OrderContext {
         return productInOrderService.getProductsByOrder(this.order.getId());
     }
 
+    /**
+     * delete product from current context
+     * @param product_id - id of the product being deleted
+     */
     public void deleteProductFromOrder(long product_id){
         this.order = orderService.findActiveOrdersByUser_id(this.user.getId());
         if(this.order == null)
@@ -79,6 +96,10 @@ public class OrderContext {
         productInOrderService.removeProductFromOrder(this.order.getId(), product_id);
     }
 
+    /**
+     * reduces the amount of product by 1
+     * @param product_id - id of product which we want to delete
+     */
     public void numOfProductDesc(long product_id){
         this.order = orderService.findActiveOrdersByUser_id(this.user.getId());
         if(this.order == null)
@@ -86,6 +107,10 @@ public class OrderContext {
         productInOrderService.numOfProductDesc(this.order.getId(), product_id);
     }
 
+    /**
+     * create template of message
+     * @return template for a purchase confirmation message
+     */
     public String createMessageBuy(){
         Map<Product, Integer> productNumMap = productInOrderService.getProductsByOrder(this.order.getId());
 
@@ -106,6 +131,9 @@ public class OrderContext {
         return message.toString();
     }
 
+    /**
+     * Make order status CLOSE and send message to client email about purchase
+     */
     @Transactional
     public void buyOrder(){
         this.order = orderService.findActiveOrdersByUser_id(this.user.getId());
@@ -118,6 +146,9 @@ public class OrderContext {
         orderService.buyProduct(this.order.getId(), currentDate);
     }
 
+    /**
+     * Make order status CANCEL
+     */
     public void cancelOrder(){
         this.order = orderService.findActiveOrdersByUser_id(this.user.getId());
         if(this.order == null)

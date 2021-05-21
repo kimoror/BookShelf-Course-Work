@@ -12,6 +12,9 @@ import java.sql.Date;
 import java.util.List;
 import java.util.Locale;
 
+/**
+ * Service for managing {@link Order}. Using {@link OrderRepo}
+ */
 @Service
 @Slf4j
 public class OrderService {
@@ -28,7 +31,6 @@ public class OrderService {
     @Transactional
     @Loggable
     public void save(Order order){
-
         orderRepo.save(order);
     }
 
@@ -49,6 +51,12 @@ public class OrderService {
         return orderRepo.findActiveOrdersByUser_id(user_id);
     }
 
+    /**
+     * Purchase order. Set order time and make order status CLOSE
+     * @see OrderStatus
+     * @param order_id - id of the order we want to buy
+     * @param date - order purchase date
+     */
     @Transactional
     @Loggable
     public void buyProduct(long order_id, Date date){
@@ -65,7 +73,6 @@ public class OrderService {
     @Transactional
     @Loggable
     public void changeStatus(long order_id, OrderStatus status){
-//        status = status.toUpperCase(Locale.ROOT);
         orderRepo.changeStatus(order_id,status);
     }
 

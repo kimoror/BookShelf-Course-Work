@@ -6,6 +6,9 @@ import bookshelf.models.entities.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Convert entity to dto and vice versa
+ */
 public  class DtoConverter {
 
     public static MakerDto makerToDto(Maker maker){

@@ -19,6 +19,11 @@ public class RegistrationController {
         this.userDetailsService = userDetailsService;
     }
 
+    /**
+     * register new user
+     * @param user - new user
+     * @return - login page using thymeleaf
+     */
     @PostMapping(value = "/add")
     public String registration(User user){
         User newUser = new User();

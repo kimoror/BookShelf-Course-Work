@@ -6,6 +6,9 @@ import lombok.*;
 
 import java.sql.Date;
 
+/**
+ * Dto of {@link Order}
+ */
 @Setter
 @Getter
 @AllArgsConstructor

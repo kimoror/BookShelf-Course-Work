@@ -6,6 +6,9 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+/**
+ * Dto of {@link Maker}
+ */
 @Setter
 @Getter
 @NoArgsConstructor

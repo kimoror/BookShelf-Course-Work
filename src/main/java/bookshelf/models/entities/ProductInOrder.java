@@ -6,6 +6,9 @@ import org.springframework.stereotype.Component;
 import javax.persistence.*;
 import java.util.List;
 
+/**
+ * represents the ratio of the items in the order
+ */
 @Component
 @Entity
 @NoArgsConstructor

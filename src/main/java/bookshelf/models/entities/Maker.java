@@ -5,6 +5,9 @@ import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 
+/**
+ * represent author or manufacturer of product
+ */
 @Component
 @Entity
 @Table( name = "makers")
