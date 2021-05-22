@@ -46,7 +46,6 @@ class OrderServiceTest {
         // Run the test
         orderServiceUnderTest.save(order);
 
-        // Verify the results
     }
 
     @Test
