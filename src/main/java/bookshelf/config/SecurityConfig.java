@@ -34,7 +34,6 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
      * @param http - HttpSecurity
      * @throws Exception
      */
-            //TODO изменить пути
             protected void configure(HttpSecurity http) throws Exception{
                 http
                         .csrf().disable()

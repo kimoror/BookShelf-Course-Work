@@ -6,7 +6,8 @@ const app = {
                 status:''
             },
             user:{
-                id:'',
+                id1:'',
+                id2:'',
                 role:'',
                 status
             },
@@ -29,7 +30,7 @@ const app = {
             })
         },
         changeUserRole: function (){
-            axios.post(this.url.changeUserRole + this.user.id,{
+            axios.post(this.url.changeUserRole + this.user.id1,{
                 role: this.user.role
             })
         },
@@ -39,7 +40,7 @@ const app = {
             })
         },
         changeUserStatus: function (){
-            axios.post(this.url.changeStatus + this.user.id, {
+            axios.post(this.url.changeStatus + this.user.id2, {
                 status: this.user.status
             })
         }

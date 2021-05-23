@@ -25,7 +25,7 @@
              v-model="order.status" type="text">
     </div>
   </form>
-  <button type="submit" @click="changeOrderStatus()">Изменить статус товара</button>
+  <button type="submit" @click="changeOrderStatus()">Изменить статус заказа</button>
   <hr align="center" width="500" size="2" color="#ff0000" />
   <h2>Поменять роль пользователя:</h2>
   <form>
@@ -33,7 +33,7 @@
       <label for="user_id">Id пользователя:</label>
       <input class="form-control"
              id="user_id"
-             v-model="user.id" type="text">
+             v-model="user.id1" type="text">
     </div>
     <div>
       <label for="user_role">Новая роль пользователя:</label>
@@ -42,7 +42,7 @@
              v-model="user.role" type="text">
     </div>
   </form>
-  <button type="submit" @click="changeUserRole()">Изменить статус товара</button>
+  <button type="submit" @click="changeUserRole()">Изменить роль пользователя</button>
   <hr align="center" width="500" size="2" color="#ff0000" />
   <h2>Поменять статус пользователя:</h2>
   <form>
@@ -50,7 +50,7 @@
       <label for="user_id2">Id пользователя:</label>
       <input class="form-control"
              id="user_id2"
-             v-model="user.id" type="text">
+             v-model="user.id2" type="text">
     </div>
     <div>
       <label for="user_status">Новый статус пользователя:</label>
@@ -59,7 +59,7 @@
              v-model="user.status" type="text">
     </div>
   </form>
-  <button type="submit" @click="changeUserStatus()">Изменить статус товара</button>
+  <button type="submit" @click="changeUserStatus()">Изменить статус пользователя:</button>
   <hr align="center" width="500" size="2" color="#ff0000" />
   <h2>Отправить сообщение пользователю:</h2>
   <form>
