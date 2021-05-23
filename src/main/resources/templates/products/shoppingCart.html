@@ -9,6 +9,11 @@
 <body>
 <div id="shoppingCart">
     <button @click="getOrder()">Обновить корзину</button>
+    <br>
+    <a href = 'http://localhost:8080/views/books' style="padding: 5px">Книги</a>
+    <a href = 'http://localhost:8080/views/exerciseBooks' style="padding: 5px">Рабочие тетради</a>
+    <a href = 'http://localhost:8080/views/stationary' style="padding: 5px">Канцелярия</a>
+    <br>
     <dl v-if="flagProductsView">
         <dt>Товары:</dt>
         <dd v-for="product in products">

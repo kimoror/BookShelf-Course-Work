@@ -67,11 +67,9 @@ public class OrderContext {
             this.order.setUser(this.user);
             orderService.save(this.order);
         }
-        else{
             productInOrderService.save(
                     new ProductInOrder(this.order.getId(), productService.findById(id).getId(), 1)
             );
-        }
     }
 
 
