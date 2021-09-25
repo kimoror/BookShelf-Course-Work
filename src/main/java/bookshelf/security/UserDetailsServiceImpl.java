@@ -55,6 +55,11 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         userRepo.save(user);
     }
 
+    /**
+     *
+     * @param userEmail
+     * @return true if user with userEmail exists in database
+     */
     @Transactional
     @Loggable
     public boolean userExists(String userEmail){

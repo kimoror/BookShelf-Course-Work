@@ -46,6 +46,10 @@ public class ShoppingCartController {
         orderContext.deleteProductFromOrder(id);
     }
 
+    /**
+     *  Sorts product in descending order
+     * @param id - id of product
+     */
     @GetMapping("/product/desc/{id}")
     @ResponseBody
     public void descNumOfProduct(@PathVariable Long id){

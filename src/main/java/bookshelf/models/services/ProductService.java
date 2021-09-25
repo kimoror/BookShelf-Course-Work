@@ -97,6 +97,7 @@ public class ProductService {
     }
 
     /**
+     * Find all products whose id are in idList
      * @param idList - list of product id
      * @return products by id from idList
      */

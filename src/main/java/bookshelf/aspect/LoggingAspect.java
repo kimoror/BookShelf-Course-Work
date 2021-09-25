@@ -18,6 +18,12 @@ public class LoggingAspect {
     @Pointcut("@annotation(Loggable)")
     public void executeLogging(){}
 
+    /**
+     * Aspect for logging methods
+     * @param joinPoint - method that will be logged
+     * @return result of method
+     * @throws Throwable
+     */
     @Around("executeLogging()")
     public Object logMethodCall(ProceedingJoinPoint joinPoint) throws Throwable{
         long startTime = System.currentTimeMillis();
