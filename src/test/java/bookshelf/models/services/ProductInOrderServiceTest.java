@@ -51,8 +51,6 @@ class ProductInOrderServiceTest {
 
     @Test
     void testExistByOrder_idAndProduct_Id() {
-        // Setup
-
         // Configure ProductInOrderRepo.findAllByOrder_idAndProduct_Id(...).
         final List<ProductInOrder> productInOrders = List.of(new ProductInOrder(0L, 0L, 0L, 0));
         when(mockProductInOrderRepo.findAllByOrder_idAndProduct_Id(0L, 0L)).thenReturn(productInOrders);
@@ -66,8 +64,6 @@ class ProductInOrderServiceTest {
 
     @Test
     void testGetProductsByOrder() {
-        // Setup
-
         // Configure ProductInOrderRepo.getProductsByOrder(...).
         final List<Product> productList = List.of(new Product(0L, "name", 0, "img_path", "description", "short_description", new Maker(0L, "name"), new Product_type(0L, "name")));
         when(mockProductInOrderRepo.getProductsByOrder(0L)).thenReturn(productList);
@@ -78,12 +74,11 @@ class ProductInOrderServiceTest {
         final Map<Product, Integer> result = productInOrderServiceUnderTest.getProductsByOrder(0L);
 
         // Verify the results
+        verify(mockProductInOrderRepo).getProductsByOrder(0L);
     }
 
     @Test
     void testRemoveProductFromOrder() {
-        // Setup
-
         // Run the test
         productInOrderServiceUnderTest.removeProductFromOrder(0L, 0L);
 
@@ -93,8 +88,6 @@ class ProductInOrderServiceTest {
 
     @Test
     void testDeleteProductsFromCanceledOrder() {
-        // Setup
-
         // Run the test
         productInOrderServiceUnderTest.deleteProductsFromCanceledOrder(0L);
 

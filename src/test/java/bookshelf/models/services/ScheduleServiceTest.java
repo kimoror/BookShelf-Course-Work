@@ -17,6 +17,7 @@ import java.util.Collections;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -67,8 +68,6 @@ class ScheduleServiceTest {
 
         // Run the test
         scheduleServiceUnderTest.start();
-
-        // Verify the results
     }
 
     @Test
@@ -96,8 +95,6 @@ class ScheduleServiceTest {
 
         // Run the test
         scheduleServiceUnderTest.start();
-
-        // Verify the results
     }
 
     @Test
@@ -121,8 +118,6 @@ class ScheduleServiceTest {
 
         // Run the test
         scheduleServiceUnderTest.start();
-
-        // Verify the results
     }
 
     @Test
@@ -150,8 +145,6 @@ class ScheduleServiceTest {
 
         // Run the test
         scheduleServiceUnderTest.start();
-
-        // Verify the results
     }
 
     @Test
@@ -176,8 +169,6 @@ class ScheduleServiceTest {
 
         // Run the test
         scheduleServiceUnderTest.start();
-
-        // Verify the results
     }
 
     @Test
@@ -203,8 +194,6 @@ class ScheduleServiceTest {
 
         // Run the test
         scheduleServiceUnderTest.start();
-
-        // Verify the results
     }
 
     @Test
@@ -230,7 +219,5 @@ class ScheduleServiceTest {
 
         // Run the test
         scheduleServiceUnderTest.start();
-
-        // Verify the results
     }
 }

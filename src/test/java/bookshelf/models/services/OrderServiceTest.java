@@ -18,6 +18,7 @@ import java.util.Collections;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -45,6 +46,9 @@ class OrderServiceTest {
 
         // Run the test
         orderServiceUnderTest.save(order);
+
+        // Verify the results
+        verify(mockOrderRepo).save(order);
 
     }
 
@@ -82,8 +86,6 @@ class OrderServiceTest {
 
     @Test
     void testBuyProduct() {
-        // Setup
-
         // Run the test
         orderServiceUnderTest.buyProduct(0L, Date.valueOf(LocalDate.of(2020, 1, 1)));
 
@@ -94,8 +96,6 @@ class OrderServiceTest {
 
     @Test
     void testMakeOrderStatusCanceled() {
-        // Setup
-
         // Run the test
         orderServiceUnderTest.makeOrderStatusCanceled(0L);
 
@@ -105,8 +105,6 @@ class OrderServiceTest {
 
     @Test
     void testChangeStatus() {
-        // Setup
-
         // Run the test
         orderServiceUnderTest.changeStatus(0L, OrderStatus.ACTIVE);
 
