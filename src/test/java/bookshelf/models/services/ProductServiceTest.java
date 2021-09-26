@@ -1,5 +1,6 @@
 package bookshelf.models.services;
 
+import bookshelf.exceptions.EntityNotFoundException;
 import bookshelf.models.entities.Maker;
 import bookshelf.models.entities.Product;
 import bookshelf.models.entities.Product_type;
@@ -14,7 +15,10 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -32,7 +36,6 @@ class ProductServiceTest {
 
     @Test
     void testFindAll() {
-        // Setup
 
         // Configure ProductRepo.findAll(...).
         final List<Product> productList = List.of(new Product(0L, "name", 0, "img_path", "description", "short_description", new Maker(0L, "name"), new Product_type(0L, "name")));
@@ -40,8 +43,6 @@ class ProductServiceTest {
 
         // Run the test
         final List<Product> result = productServiceUnderTest.findAll();
-
-        // Verify the results
     }
 
     @Test
@@ -53,12 +54,11 @@ class ProductServiceTest {
         final List<Product> result = productServiceUnderTest.findAll();
 
         // Verify the results
+        verify(mockProductRepo).findAll();
     }
 
     @Test
     void testFindById() {
-        // Setup
-
         // Configure ProductRepo.findById(...).
         final Optional<Product> product = Optional.of(new Product(0L, "name", 0, "img_path", "description", "short_description", new Maker(0L, "name"), new Product_type(0L, "name")));
         when(mockProductRepo.findById(0L)).thenReturn(product);
@@ -66,7 +66,17 @@ class ProductServiceTest {
         // Run the test
         final Product result = productServiceUnderTest.findById(0L);
 
+    }
+
+    @Test
+    void testFindByIdNotOk() {
+        final String expectedMessage = "Product with id '0' not found";
+
+        // Run the test
+        EntityNotFoundException exception = assertThrows(EntityNotFoundException.class, () -> productServiceUnderTest.findById(0L));
+        String message = exception.getMessage();
         // Verify the results
+        assertEquals(message, expectedMessage);
     }
 
     @Test
@@ -82,12 +92,11 @@ class ProductServiceTest {
         productServiceUnderTest.addProduct(product);
 
         // Verify the results
+        verify(mockProductRepo).save(any(Product.class));
     }
 
     @Test
     void testGetProductByProduct_typeId() {
-        // Setup
-
         // Configure ProductRepo.getProductByProduct_typeId(...).
         final List<Product> productList = List.of(new Product(0L, "name", 0, "img_path", "description", "short_description", new Maker(0L, "name"), new Product_type(0L, "name")));
         when(mockProductRepo.getProductByProduct_typeId(0L)).thenReturn(productList);
@@ -96,12 +105,23 @@ class ProductServiceTest {
         final List<Product> result = productServiceUnderTest.getProductByProduct_typeId(0L);
 
         // Verify the results
+        verify(mockProductRepo).getProductByProduct_typeId(0L);
+    }
+
+    @Test
+    void testGetProductByProduct_typeIdNotOk() {
+
+        // Run the test
+        when(mockProductRepo.getProductByProduct_typeId(0L)).thenReturn(Collections.emptyList());
+        EntityNotFoundException exception = assertThrows(EntityNotFoundException.class, () -> productServiceUnderTest.getProductByProduct_typeId(0L));
+
+
+        // Verify the results
+        assertEquals(exception.getMessage(), "Product type with id '0' not found" );
     }
 
     @Test
     void testGetProductByProduct_typeIdAndOrderByCostAsc() {
-        // Setup
-
         // Configure ProductRepo.getProductByProduct_typeIdAndOrderByCostAsc(...).
         final List<Product> productList = List.of(new Product(0L, "name", 0, "img_path", "description", "short_description", new Maker(0L, "name"), new Product_type(0L, "name")));
         when(mockProductRepo.getProductByProduct_typeIdAndOrderByCostAsc(0L)).thenReturn(productList);
@@ -109,13 +129,12 @@ class ProductServiceTest {
         // Run the test
         final List<Product> result = productServiceUnderTest.getProductByProduct_typeIdAndOrderByCostAsc(0L);
 
-        // Verify the results
+        // Verify the result
+        verify(mockProductRepo).getProductByProduct_typeIdAndOrderByCostAsc(0L);
     }
 
     @Test
     void testGetProductByProduct_typeIdAndOrderByCostDesc() {
-        // Setup
-
         // Configure ProductRepo.getProductByProduct_typeIdAndOrderByCostDesc(...).
         final List<Product> productList = List.of(new Product(0L, "name", 0, "img_path", "description", "short_description", new Maker(0L, "name"), new Product_type(0L, "name")));
         when(mockProductRepo.getProductByProduct_typeIdAndOrderByCostDesc(0L)).thenReturn(productList);
@@ -124,12 +143,11 @@ class ProductServiceTest {
         final List<Product> result = productServiceUnderTest.getProductByProduct_typeIdAndOrderByCostDesc(0L);
 
         // Verify the results
+        verify(mockProductRepo).getProductByProduct_typeIdAndOrderByCostDesc(0L);
     }
 
     @Test
     void testGetProductByProduct_typeIdAndOrderByNameDesc() {
-        // Setup
-
         // Configure ProductRepo.getProductByProduct_typeIdAndOrderByNameDesc(...).
         final List<Product> productList = List.of(new Product(0L, "name", 0, "img_path", "description", "short_description", new Maker(0L, "name"), new Product_type(0L, "name")));
         when(mockProductRepo.getProductByProduct_typeIdAndOrderByNameDesc(0L)).thenReturn(productList);
@@ -138,12 +156,11 @@ class ProductServiceTest {
         final List<Product> result = productServiceUnderTest.getProductByProduct_typeIdAndOrderByNameDesc(0L);
 
         // Verify the results
+        verify(mockProductRepo).getProductByProduct_typeIdAndOrderByNameDesc(0L);
     }
 
     @Test
     void testGetProductByProduct_typeIdAndOrderByNameAsc() {
-        // Setup
-
         // Configure ProductRepo.getProductByProduct_typeIdAndOrderByNameAsc(...).
         final List<Product> productList = List.of(new Product(0L, "name", 0, "img_path", "description", "short_description", new Maker(0L, "name"), new Product_type(0L, "name")));
         when(mockProductRepo.getProductByProduct_typeIdAndOrderByNameAsc(0L)).thenReturn(productList);
@@ -152,12 +169,11 @@ class ProductServiceTest {
         final List<Product> result = productServiceUnderTest.getProductByProduct_typeIdAndOrderByNameAsc(0L);
 
         // Verify the results
+        verify(mockProductRepo).getProductByProduct_typeIdAndOrderByNameAsc(0L);
     }
 
     @Test
     void testFindAllByIdList() {
-        // Setup
-
         // Configure ProductRepo.findAll(...).
         final List<Product> productList = List.of(new Product(0L, "name", 0, "img_path", "description", "short_description", new Maker(0L, "name"), new Product_type(0L, "name")));
         when(mockProductRepo.findAll()).thenReturn(productList);
@@ -166,6 +182,7 @@ class ProductServiceTest {
         final List<Product> result = productServiceUnderTest.findAllByIdList(List.of(0L));
 
         // Verify the results
+        assertEquals(result, productList);
     }
 
     @Test
@@ -177,5 +194,6 @@ class ProductServiceTest {
         final List<Product> result = productServiceUnderTest.findAllByIdList(List.of(0L));
 
         // Verify the results
+        assertEquals(result, Collections.emptyList());
     }
 }

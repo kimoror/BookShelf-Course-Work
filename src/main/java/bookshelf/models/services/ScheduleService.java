@@ -20,7 +20,7 @@ import java.util.Objects;
 @Slf4j
 @Service
 public class ScheduleService {
-    private final String path = "DBBackup";
+    private final String path = "/Users/danila/Documents/IdeaProjects/University/BookShelf-Course-Work/src/main/resources/DBBackup";
 
     private final MakerService makerService;
     private final OrderService orderService;

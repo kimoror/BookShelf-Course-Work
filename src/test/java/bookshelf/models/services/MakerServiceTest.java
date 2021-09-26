@@ -11,6 +11,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.Collections;
 import java.util.List;
 
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -35,6 +36,7 @@ class MakerServiceTest {
         final List<Maker> result = makerServiceUnderTest.findAll();
 
         // Verify the results
+        verify(mockMakerRepo).findAll();
     }
 
     @Test
@@ -46,5 +48,6 @@ class MakerServiceTest {
         final List<Maker> result = makerServiceUnderTest.findAll();
 
         // Verify the results
+        verify(mockMakerRepo).findAll();
     }
 }
